@@ -50,7 +50,6 @@ const config = {
     logOut: userModuleIndex + 'Register/logOut', //退出登录
     verCode: request + "Register/registerSendMsg", // 短信发送
     register: request + "Register/register", // 用户注册
-    getloginMethod: request + "Register/loginMethod",
     getSendMailbox: request + "Register/sendMailbox",
     sendMailboxByPassword: request + "Register/sendMailboxByPassword",
     GoogleLogin: request + "Google/login",
