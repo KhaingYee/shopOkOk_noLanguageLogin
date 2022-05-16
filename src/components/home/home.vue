@@ -4,7 +4,7 @@
     <!-- <home-header :userName="getData"></home-header> -->
     <div class="header" :style="'background-color:' + apicolor">
         <router-link to="/home">
-          <img :src="this.$httpConfig.readLogo" class="header_logo"/>
+          <img :src="URL + wapLogo" class="header_logo"/>
         </router-link>
         <div class="header_seek" @click="searchIn">
             <img class="header_seek_img" :src="seekImg" alt="搜素img">
@@ -260,7 +260,7 @@
               <p class="discountshow" v-if="i.reduction == 1">满减</p>
               <p class="discountshow" v-if="i.gift == 1">满赠</p>
             </div> -->
-            <p class="price">￥{{i.goods_price}}</p>
+            <p class="price">￥{{i.price_member}}</p>
           </div>
         </div>
       </li>
@@ -338,7 +338,8 @@ export default {
       countDownTime:0,
       slide_switch: false,
       roll_switch: true,
-      storeProduct:null
+      storeProduct:null,
+      wapLogo:'',
     };
   },
   computed: {
@@ -346,6 +347,7 @@ export default {
     // ...mapGetters(['getEventById', 'catLength'])
   },
   created() {
+    this.getFavLogo();
     this.styColor();
     this.newFloor();
     this.seckillList();
@@ -400,6 +402,16 @@ export default {
     $("html,body").animate({ scrollTop: "0px" }, 300);
   },
   methods: {
+          getFavLogo() {
+            this.axios
+                .post(this.$httpConfig.aboutEtcetera)
+                .then(res => {
+                  this.wapLogo = res.data.data.logo_name;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+          },
           countDownTimer() {
           if(this.countDownTime > 0) {
               setTimeout(() => {
@@ -799,7 +811,7 @@ export default {
         .header_logo{
             position: absolute;    
             left: 0.32rem;
-            top: 0.18rem;
+            top: 0.2rem;
             width: 1.85rem;
             height: 0.6rem;
             display: block;
