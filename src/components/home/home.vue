@@ -2,14 +2,15 @@
   <div class="home" ref="home">
     <div v-title data-title="主页">主页</div>
     <!-- <home-header :userName="getData"></home-header> -->
-    <div class="header" :style="'background-color:' + apicolor">
+    <div class="header">
+      <div class="new_header">
         <router-link to="/home">
           <img :src="URL + wapLogo" class="header_logo"/>
         </router-link>
         <div class="header_seek" @click="searchIn">
-            <img class="header_seek_img" :src="seekImg" alt="搜素img">
+            <!-- <img class="header_seek_img" :src="seekImg" alt="搜素img"> -->
             <form action="javascript:void(0);">
-                <input type="search" placeholder="搜索宝贝、店铺..." @keyup.enter.stop="submit(value)">
+                <input type="search" @keyup.enter.stop="submit(value)">
             </form>
         </div>
         <div class="header_news">
@@ -17,6 +18,7 @@
                 <img class="header_news_advices" :src="advices" alt="消息img">
             </router-link>
         </div>
+      </div>
     </div>
         <mt-swipe :auto="3000">
           <mt-swipe-item v-for="item in homeBanner.slice(0,8)" :key="item.id">
@@ -797,44 +799,38 @@ export default {
 
 <style lang="less" scoped>
     .header{
-        // width: 7.5rem;
-        // height: 0.9rem;
-        // background-color: #d02629;
-        // position: relative;
-        // overflow: hidden;
             width: 100%;
             height: 2.5rem;
             position: relative;
             overflow: hidden;
-            background-color: linear-gradient(#fcf1e9, #F50101);
+            background-color:#d02629;
             border-radius: 0 0 0.2rem 0.2rem;
-        .header_logo{
-            position: absolute;    
-            left: 0.32rem;
-            top: 0.2rem;
-            width: 1.85rem;
+            .new_header{
+              display: flex;
+              justify-content: space-between;
+              padding: .2rem .3rem;
+            }
+        .header_logo{ 
+            width: 2rem;
             height: 0.6rem;
-            display: block;
-            // background-image: url("../../assets/images/logo.png");
             background-size: 100% 100%;
         }
         .header_seek{
             width: 3.9rem;
             height: 0.6rem;
             background-color: #d02629;
-            margin: 0.2rem .32rem 0.2rem 2.51rem;
-            border-radius: 0.25rem;
-            position: relative;    
+            border-radius: 0.25rem; 
         }
+
          .header_seek input{
                 width: 100%;
                 height: 0.6rem;
                 border-radius: 0.25rem ;
-                border: 0.01rem solid #ffffff;
+                border: 0.01rem solid #f06e6e;
                 outline: none;
                 font-size: 0.26rem;
                 text-indent: 0.75rem;
-                background-color: #ffffff;
+                background-color: #f06e6e;
                 color:#fff;
             }
          .header_seek_img{
@@ -849,12 +845,8 @@ export default {
                 color: #999;
          }
          .header_news{
-             position: absolute;
-             right: 0.32rem;
-             top:0.2rem;
              width: auto;
-             height: 0.6rem; 
-           	
+             height: 0.6rem;           	
          }
          .header_news a{
              display: block;
@@ -889,11 +881,10 @@ export default {
             /*font-size: .1rem;*/
         }
         .header_news_advices{
-             width: 0.5rem;
-             height: 0.5rem;
+             width: 0.6rem;
+             height: 0.6rem;
              display: block;
              margin: auto;
-             margin-top: 0.05rem
         }
     }
 .home {
@@ -1675,16 +1666,14 @@ export default {
 <style lang="less" scoped>
 .home {
   .mint-swipe {
-    // width: 100%;
-    // height: 3.28rem;
-      width: 90%;
+      width: 92%;
       text-align: center;
       position: absolute;
-      left: 4.8%;
       top: 1rem;
       border-radius: 0.2rem;
       height: 3.28rem;
       z-index: 10;
+      margin: 0 .3rem;
     img {
       width: 100%;
       height: 100%;

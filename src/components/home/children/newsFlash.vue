@@ -1,10 +1,10 @@
 <template>
     <div class="flash-wrap">
          <!-- 快讯 -->
-        <!-- <div class="index_flash">
+        <div class="index_flash">
             <div class="index_flash_logo">
-                <span class="i_f_l_text" id="title_name">{{title_name}}</span>
-                <span class="i_f_l_img" :style="'border-bottom: .5rem solid ' + apiColor"></span>  
+                <!-- <span class="i_f_l_text" id="title_name">{{title_name}}</span>
+                <span class="i_f_l_img" :style="'border-bottom: .5rem solid ' + apiColor"></span>   -->
                 <span class="text-sample">快讯</span>    
             </div>
             <div class="box-wrap">
@@ -13,7 +13,7 @@
                 </ul>
             </div>
             <router-link to="Notice" class="More">更多</router-link>
-        </div> -->
+        </div>
            <!-- 快捷链接 -->
         <div class="index_Ctrl">
             <div class="index_Ctrl_auto">
@@ -172,18 +172,12 @@ import qs from "qs"
         }
     }
          .index_Ctrl{
-           width: 100%;
            overflow: hidden;
-           background-color: #fff;
-        //    border-top:1px solid #DEDEDE;
-           padding-bottom: 0.35rem;
-           margin-top: 2rem;
+           padding: .3rem .3rem;
          .index_Ctrl_auto{
-            width: 7.1rem;
             overflow: hidden;
-            margin: auto;
             display: flex;
-            justify-content: flex-start;
+            justify-content: space-between;
             flex-direction: row;
             flex-wrap: wrap;
          }
@@ -192,8 +186,6 @@ import qs from "qs"
             width:1.15rem;
             height: 1.6rem;
             float: left;
-            margin-right: 0.33rem;
-            margin-top: 0.3rem;
             overflow: hidden;
         }
         .index_Ctrl_auto .link:nth-child(5n){
@@ -218,18 +210,21 @@ import qs from "qs"
         }  
     }
     .index_flash{
-        width: 100%;
-        height: 0.8rem;
+        // width: 100%;
+        height: 0.6rem;
         background-color: #fff;
         overflow: hidden;
         margin-top: 2rem;
+        margin-left: .3rem;
+        margin-right: .3rem;
+        border-radius: .5rem;
         .index_flash_logo{
-            width: 2rem;
-            height: 0.55rem;
-            border-right:1px dashed #DEDEDE;
-            margin-top: 0.12rem;
+            width: 1rem;
+            height: 0.6rem;
             float: left;
-            margin-left: 0.2rem
+            background-color: #d02629;
+            text-align: center;
+            line-height: .6rem;
         }
         .i_f_l_text{
             width: 1rem;
@@ -240,18 +235,6 @@ import qs from "qs"
             line-height: 0.55rem;
         }
         .i_f_l_img{
-            // width: 0.87rem;
-            // height: 0.45rem;
-            // display: block;
-            // float: left;
-            // margin-top: 0.05rem;
-            // background-image: url("../../../assets/images/jj@3x.png");
-            // background-size: 100% 100%;
-            // text-indent: 0.24rem;
-            // font-size: 0.27rem;
-            // color: #fff;
-            // line-height: 0.43rem;
-
             width: 0.6rem;
             height: 0.45rem;
             display: block;
@@ -262,18 +245,14 @@ import qs from "qs"
             margin-left: 1rem;
         }
         .text-sample{
-            font-size: 0.27rem;
-            margin-left: 1.25rem;
-            margin-top: -0.46rem;
-            z-index: 1;
-            float: left;
+            font-size: 0.28rem;
+            text-align: center;
             color: #fff;
         }
         .box-wrap{
             position: relative;
             width: 4.05rem;
-            height: 0.55rem;
-            margin-top: 0.12rem;
+            height: 0.6rem;
             float: left;
             margin-left: 0.2rem;
             overflow: hidden;
@@ -297,17 +276,15 @@ import qs from "qs"
             cursor: pointer;
         }
         .More{
-            width: 0.75rem;
-            height: 0.55rem;
+            width: 1rem;
+            height: 0.6rem;
             display: block;
             float: right;
-            margin-top: 0.12rem;
-            border-left:1px dashed #DEDEDE;
-            text-align: right;
-            line-height: 0.55rem;
-            color:#797979;
+            text-align: center;
+            line-height: 0.6rem;
+            color:#fff;
             font-size: 0.28rem;
-            margin-right: 0.2rem
+            background-color: #9b9595;
         }
     }
 </style>
