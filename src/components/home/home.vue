@@ -33,179 +33,92 @@
       @hit="hit"
     ></news-flash>
 
-    <!-- <div class="various-lists">
-      <div
-          class="list"
-          v-for="(item,index) in goodsType"
-          :key="index"
-          @click="toProductList(item)"
-      >
-        <div class="title">{{item.name}}</div>
-        <div class="subtitle">{{item.describe}}</div>
-        <div class="img-list">
-            <img v-for="items in item.goods" :key="items.id" :src="URL + items.pic_url" alt />
-        </div>
-      </div>
-    </div> -->
-
-    <!-- 店铺街 -->
-    <!--<limited-hd :text="$store.state.home_data.recommendGoods"></limited-hd>-->
-    <!-- <div class="recomment-shop">
-      <img src="../../assets/shoptitleimg.png" class="recomment-titleimg"/>
-      <div class="recomment-title">优选门店</div>
-      <img :src="URL + advertiseData.content" class="recomment-logo" @click="goLogoLink(advertiseData.ad_link)"/>
-      <div class="advertise-all">
-        <div class="advertise-card" v-for="item in advdata.slice(0,3)" :key="item.id">
-          <img :src="URL + item.pic_url" class="advertise-img" @click="goLink(item.ad_link)"/>
-        </div>
-      </div>
-    </div> -->
-    <div v-if="storeProduct" class="store-container">
-      <div class="store">
-        <div class="tit">
-          <div class="name">线下节点与热推项目</div>
-        </div>
-        <div class="products">						
-          <div class="product" v-for="item in storeProduct.store_goods.slice(0,3)" :key="item.id" @click="enterDetail(item)">
-            <div class="image">
-              <img :src="URL+item.pic_url"/>
-            </div>
-            <div class="title">{{item.title}}</div>
-            <div class="price">￥{{item.goods_price}}</div>
-          </div>		
-        </div>
-      </div>
-    </div>
     <div>
-      <div class="flash-sale slide">
+      <div class="offline-node" v-if="shoplist">
         <div class="title">
-          <div class="name">现时现量 先到先得</div>
-          <div class="more" v-if="countDownTime == '' || countDownTime == null || countDownTime == []">
-            秒杀还未开始&nbsp;&nbsp;
-            <div class="block hour">00</div>
-            <div class="aa">:</div>
-            <div class="block minute">00</div>
-             <div class="aa">:</div>
-            <div class="block second">00</div>
-          </div>
-          <div class="more" v-else>
-            距离本场结束&nbsp;&nbsp;
-            <div class="block hour">{{showTimeH}}</div>
-             <div class="aa">:</div>
-            <div class="block minute">{{showTimeM}}</div>
-             <div class="aa">:</div>
-            <div class="block second">{{showTimes}}</div>
-          </div>
+          <div class="title-left"></div>
+          <div class="name">线下节点</div>
+          <div class="name-dis">热推项目等</div>
         </div>
-        <div v-if="countDownTime == '' || countDownTime == null || countDownTime == []">
-          <div class="flash-item" v-if="flashgood.length>0">
-              <div class="flash-card" v-for="good in flashgood.slice(0,6)" :key="good.id">
-                <div class="image">
-                  <img :src="URL+good.pic_url"/>
-                </div>
-                <div class="title">{{good.title}}</div>								
-                <div class="sale-bar">
-                  <div class="inner-bar" :style="'width:' + ((good.buy_num/good.activity_num)*100) + '%'"></div>
-                </div>
-                <div class="remain">
-                  <div class="buy">已抢购{{good.buy_num}}件</div>
-                  <div class="stock">仅剩{{good.activity_num - good.buy_num}}件</div>
-                </div>
-                <div class="bottom">
-                  <div class="price">
-                    ￥{{good.activity_price}}
-                  </div>
-                  <div class="btn">
-                    活动已结束
-                  </div>
-                </div>
-              </div>
-              <div class="flash-card" style="display: flex;align-items: center;justify-content: center;" @click="Fdetail()">
-                <div class="more" style="border-radius: 1rem;">
-                  查看更多
-                </div>	
-              </div>		          
+        <div class="offline-card">
+          <div class="offline-div">
+          <img src="../../assets/activity/goods.png" class="offline-img"/>
           </div>
-        </div>
-        <div v-else>
-          <div class="flash-item" v-if="flashgood.length>0">
-              <div class="flash-card" v-for="good in flashgood.slice(0,6)" :key="good.id" @click="enterflashDetail(good)">
-                <div class="image">
-                  <img  :src="URL+good.pic_url"/>
+          <div class="cardstore">
+              <div class="cardd" v-for="good in shoplist.slice(0,6)" :key="good.id" @click="shopHome(good.id)">
+                <div class="card-image">
+                  <img :src="URL+good.store_logo" class="img"/>
                 </div>
-                <div class="title">{{good.title}}</div>								
-                <div class="sale-bar">
-                  <div class="inner-bar" :style="'width:' + ((good.buy_num/good.activity_num)*100) + '%'"></div>
-                </div>
-                <div class="remain">
-                  <div class="buy">已抢购{{good.buy_num}}件</div>
-                  <div class="stock">仅剩{{good.activity_num - good.buy_num}}件</div>
-                </div>
-                <div class="bottom">
-                  <div class="price">
-                    ￥{{good.activity_price}}
+                <div class="bd-card">
+                  <div class="sec-card">
+                    <img :src="URL+good.store_logo" />
                   </div>
-                  <div class="btn" @click="enterflashDetail(good)">
-                    抢购
-                  </div>
+                  <div class="title-main">￥0.1</div>
                 </div>
-              </div>
-              <div class="flash-card" style="display: flex;align-items: center;justify-content: center;" @click="Fdetail()">
-                <div class="more" style="border-radius: 1rem;">
-                  查看更多
-                </div>	
-              </div>		          
+              </div>		
           </div>
         </div>
       </div>
     </div>
+    <div class="img-div">
+      <img src="../../assets/m.png" class="banner-img"/>
+    </div>
     <div>
-      <div class="newgood" v-if="integralGood">
+      <div class="Redeem" v-if="shoplist">
         <div class="title">
+          <div class="title-left"></div>
           <div class="name">积分兑换</div>
-          <div class="more" @click="MallDetail()">更多</div>
+          <div class="name-dis">创造价值</div>
+          <div class="more">更多</div>
         </div>
-        <div class="cards">
-            <div class="card" v-for="good in integralGood.slice(0,6)" :key="good.id" @click="enterIntegral(good)">
-              <div class="card-image">
-                <img :src="URL+good.image" />
-              </div>
-              <div class="title">{{good.title}}</div>
-              <div class="price-box">
-                <span class="price">{{good.integral}}</span>
-                <span class="inte">&nbsp;积分</span>
-              </div>
-            </div>		
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="storenew" v-if="shoplist">
-        <div class="title">
-          <div class="name">推荐店铺</div>
-          <div class="more" @click="storelink()">更多</div>
-        </div>
-        <div class="cardstore">
-            <div class="cardd" v-for="good in shoplist.slice(0,6)" :key="good.id" @click="shopHome(good.id)">
-              <div class="card-image">
-                <img :src="URL+good.store_logo" class="img"/>
-              </div>
-              <div class="bd-card">
-                <div class="sec-card">
-                  <img :src="URL+good.store_logo" />
+        <div class="offline-card">
+          <div class="cardstore">
+              <div class="cardd" v-for="good in shoplist.slice(0,6)" :key="good.id" @click="shopHome(good.id)">
+                <div class="card-image">
+                  <img :src="URL+good.store_logo" class="img"/>
                 </div>
-                <div class="title-main">{{good.shop_name}}</div>
-                <div class="title-main1">{{good.shop_name}}</div>
-              </div>
-            </div>		
+                <div class="bd-card">
+                  <div class="sec-card">
+                    <img :src="URL+good.store_logo" />
+                  </div>
+                  <div class="title-main">￥0.1</div>
+                </div>
+              </div>		
+          </div>
         </div>
       </div>
     </div>
     <div>
-      <div class="goods_new slide" v-if="guesLike.length>0">
+      <div class="Recommended_store" v-if="shoplist">
         <div class="title">
+          <div class="title-left"></div>
+          <div class="name">推荐店铺</div>
+          <div class="name-dis">创造价值</div>
+          <!-- <div class="more">更多</div> -->
+        </div>
+        <div class="offline-card">
+          <div class="cardstore">
+              <div class="cardd" v-for="good in shoplist.slice(0,6)" :key="good.id" @click="shopHome(good.id)">
+                <div class="card-image">
+                  <img :src="URL+good.store_logo" class="img"/>
+                </div>
+                <div class="bd-card">
+                  <div class="sec-card">
+                    <img :src="URL+good.store_logo" />
+                  </div>
+                  <div class="title-main">￥0.1</div>
+                </div>
+              </div>		
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="New-arrivals" v-if="guesLike.length>0">
+        <div class="title">
+          <div class="title-left"></div>
           <div class="name">新品上架</div>
-          <div class="more" @click="newlink()">更多</div>
+          <div class="name-dis">创造价值</div>
         </div>
         <div class="cards">
             <div class="card" v-for="good in guesLike.slice(0,6)" :key="good.id" @click="enterDetail(good)">
@@ -221,30 +134,29 @@
         </div>
       </div>
     </div>
-    <div>
-      <div class="goods_new slide" v-if="guesshot.length>0">
-        <div class="title1">
-          <div class="name">热销商品</div>
-          <div class="more" @click="popularlink()">更多</div>
-        </div>
-        <div class="cards">
-            <div class="card" v-for="good in guesshot.slice(0,6)" :key="good.id" @click="enterDetail(good)">
-              <div class="card-image">
-                <img :src="URL+good.pic_url" />
-              </div>
-              <div class="title">{{good.title}}</div>
-              <div class="price-box">
-                <span class="price">￥{{good.price_member}}</span>
-                <span>已售 {{good.sales_sum}}</span>
-              </div>
-            </div>		
-        </div>
-      </div>
-    </div>
     <ul class="floor">
       <li class="floor-item">
         <div class="top">
-          <div class="title">猜你喜欢</div>
+          <div class="five-title">
+            <div class="title">猜你</div>
+            <div class="sectitle">猜你喜欢</div>
+          </div>
+          <div class="five-title">
+            <div class="title">猜你</div>
+            <div class="sectitle">猜你喜欢</div>
+          </div>
+          <div class="five-title">
+            <div class="title">猜你</div>
+            <div class="sectitle">猜你喜欢</div>
+          </div>
+          <div class="five-title">
+            <div class="title">猜你</div>
+            <div class="sectitle">猜你喜欢</div>
+          </div>
+          <div class="five-title">
+            <div class="title">猜你</div>
+            <div class="sectitle">猜你喜欢</div>
+          </div>
         </div>
         <div class="goods-box" v-if="floorList.length>0">
           <div
@@ -378,6 +290,7 @@ export default {
 
       // this.getgoodInfo();
       this.getStoreListAjax();
+      this.getIndexAd();
       this.getStoreProductAjax();
   },
   mounted() {
@@ -602,6 +515,16 @@ export default {
         token: sessionStorage.getItem("data_token"),
       })).then((res) => {
         this.shoplist = res.data.data.records;
+      }).catch((err) => {
+        console.log(err)
+      });
+    },
+    getIndexAd() {
+      this.axios.post(this.$httpConfig.getIndexAd, QS.stringify({
+        store_id:18,
+        token: sessionStorage.getItem("data_token"),
+      })).then((res) => {
+
       }).catch((err) => {
         console.log(err)
       });
@@ -984,6 +907,394 @@ export default {
       }
     }
   }
+  .offline-node{
+    background-color: #f2e8e8;
+    padding: .2rem 0 .2rem .2rem;
+		.title{
+			display: flex;
+      padding-bottom: .2rem;
+      .title-left{
+        border-radius: .1rem;
+        border-left: .1rem solid #d02629;
+      }
+			.name{
+        font-size: .3rem;
+        color: #d02629;
+        padding-left: .1rem;
+        line-height: .43rem;
+        height: .5rem;
+      }	
+      .name-dis{
+        font-size: .24rem;
+        color: #d02629;
+        padding-left: .2rem;
+        line-height: .5rem;
+        height: .5rem;
+      }	
+      .more{
+        font-size: .24rem;
+      }		
+		}
+    .offline-card{
+      display: flex;
+      .offline-div{
+        border-radius: .1rem;
+      }
+      .offline-img{
+        width: 1.5rem;
+        height: 2.5rem;
+        border-radius: .1rem;
+      }
+    }
+		.cardstore{
+			display: flex;
+			flex-direction: row;
+			overflow-x: auto;
+			padding:0 .2rem;
+			flex-wrap: nowrap;
+			.cardd{
+				width:1.5rem;
+				flex: 0 0 auto;
+				height:2.5rem;
+				background:white;
+				margin-right:.2rem;
+				overflow: hidden;
+				border-radius: .1rem;
+				.card-image{
+					width:1.5rem;
+					height:1.5rem;
+					opacity:1 !important;
+					.img{
+						width:100%;
+						height:100%;
+						
+					}
+					background-color: #f0f0f0;
+				}
+        .bd-card{
+          // background: #f1f1f1;
+        }
+        .sec-card{
+          width: 1rem;
+          height: .5rem;  
+          padding: .05rem;
+          position: relative;
+          margin: -.25rem auto 0;
+          overflow: hidden;
+          z-index: 99;
+          background-color: #f0f0f0;
+					img{
+						width:100%;
+						height:100%;
+					  text-align: center;
+					}
+				}
+				.title-main{
+          color: #d02629;
+          padding: .06rem .2rem;
+          font-size: .3rem;
+          display: -webkit-box;
+          overflow: hidden;
+          white-space: normal !important;
+          text-overflow: ellipsis;
+          word-wrap: break-word;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          height: .4rem;
+          line-height: .46rem;
+          text-align: center;
+				}
+			}
+		}
+	}
+  .img-div{
+    margin: .2rem 0 0 0;
+    .banner-img{
+      width: 100%;
+    }
+  }
+  .Redeem{
+    padding: .2rem 0 0 .2rem;
+		.title{
+			display: flex;
+      padding-bottom: .2rem;
+      .title-left{
+        border-radius: .1rem;
+        border-left: .1rem solid #d02629;
+      }
+			.name{
+        font-size: .3rem;
+        color: #333;
+        padding-left: .1rem;
+        line-height: .43rem;
+        height: .5rem;
+      }	
+      .name-dis{
+        font-size: .24rem;
+        color: #d02629;
+        padding-left: .2rem;
+        line-height: .5rem;
+        height: .5rem;
+      }	
+      .more{
+        font-size: .3rem;
+        color: #999;
+        right: .2rem;
+        position: absolute;
+        line-height: .43rem;
+        height: .5rem;
+      }		
+		}
+    .offline-card{
+      display: flex;
+    }
+		.cardstore{
+			display: flex;
+			flex-direction: row;
+			overflow-x: auto;
+			padding:0 .2rem 0 0;
+			flex-wrap: nowrap;
+			.cardd{
+				width:1.5rem;
+				flex: 0 0 auto;
+				height:2.5rem;
+				background:white;
+				margin-right:.2rem;
+				overflow: hidden;
+				border-radius: .1rem;
+				.card-image{
+					width:1.5rem;
+					height:1.5rem;
+					opacity:1 !important;
+					.img{
+						width:100%;
+						height:100%;
+						
+					}
+					background-color: #f0f0f0;
+				}
+        .bd-card{
+          // background: #f1f1f1;
+        }
+        .sec-card{
+          width: 1rem;
+          height: .5rem;  
+          padding: .05rem;
+          position: relative;
+          margin: -.25rem auto 0;
+          overflow: hidden;
+          z-index: 99;
+          background-color: #f0f0f0;
+					img{
+						width:100%;
+						height:100%;
+					  text-align: center;
+					}
+				}
+				.title-main{
+          color: #d02629;
+          padding: .06rem .2rem;
+          font-size: .3rem;
+          display: -webkit-box;
+          overflow: hidden;
+          white-space: normal !important;
+          text-overflow: ellipsis;
+          word-wrap: break-word;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          height: .4rem;
+          line-height: .46rem;
+          text-align: center;
+				}
+			}
+		}
+	}
+  .Recommended_store{
+    padding: .2rem 0 0 .2rem;
+		.title{
+			display: flex;
+      padding-bottom: .2rem;
+      .title-left{
+        border-radius: .1rem;
+        border-left: .1rem solid #d02629;
+      }
+			.name{
+        font-size: .3rem;
+        color: #333;
+        padding-left: .1rem;
+        line-height: .43rem;
+        height: .5rem;
+      }	
+      .name-dis{
+        font-size: .24rem;
+        color: #d02629;
+        padding-left: .2rem;
+        line-height: .5rem;
+        height: .5rem;
+      }	
+      .more{
+        font-size: .3rem;
+        color: #999;
+        right: .2rem;
+        position: absolute;
+        line-height: .43rem;
+        height: .5rem;
+      }		
+		}
+    .offline-card{
+      display: flex;
+    }
+		.cardstore{
+			display: flex;
+			flex-direction: row;
+			overflow-x: auto;
+			padding:0 .2rem 0 0;
+			flex-wrap: nowrap;
+			.cardd{
+				width:1.5rem;
+				flex: 0 0 auto;
+				height:2.5rem;
+				background:white;
+				margin-right:.2rem;
+				overflow: hidden;
+				border-radius: .1rem;
+				.card-image{
+					width:1.5rem;
+					height:1.5rem;
+					opacity:1 !important;
+					.img{
+						width:100%;
+						height:100%;
+						
+					}
+					background-color: #f0f0f0;
+				}
+        .bd-card{
+          // background: #f1f1f1;
+        }
+        .sec-card{
+          width: 1rem;
+          height: .5rem;  
+          padding: .05rem;
+          position: relative;
+          margin: -.25rem auto 0;
+          overflow: hidden;
+          z-index: 99;
+          background-color: #f0f0f0;
+					img{
+						width:100%;
+						height:100%;
+					  text-align: center;
+					}
+				}
+				.title-main{
+          color: #d02629;
+          padding: .06rem .2rem;
+          font-size: .3rem;
+          display: -webkit-box;
+          overflow: hidden;
+          white-space: normal !important;
+          text-overflow: ellipsis;
+          word-wrap: break-word;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          height: .4rem;
+          line-height: .46rem;
+          text-align: center;
+				}
+			}
+		}
+	}
+  .New-arrivals{
+    padding: .2rem 0 0 .2rem;
+		.title{
+			display: flex;
+      padding-bottom: .2rem;
+      .title-left{
+        border-radius: .1rem;
+        border-left: .1rem solid #d02629;
+      }
+			.name{
+        font-size: .3rem;
+        color: #333;
+        padding-left: .1rem;
+        line-height: .43rem;
+        height: .5rem;
+      }	
+      .name-dis{
+        font-size: .24rem;
+        color: #d02629;
+        padding-left: .2rem;
+        line-height: .5rem;
+        height: .5rem;
+      }	
+      .more{
+        font-size: .3rem;
+        color: #999;
+        right: .2rem;
+        position: absolute;
+        line-height: .43rem;
+        height: .5rem;
+      }		
+		}
+		.cards{
+			display: flex;
+			flex-direction: row;
+			// width:100%;
+			overflow-x: auto;
+			padding:0 .2rem 0 0;
+			flex-wrap: nowrap;
+			.card{
+				width:3rem;
+				flex: 0 0 auto;
+				height:4.5rem;
+				background:white;
+				margin-right:.2rem;
+				overflow: hidden;
+				// border-radius: 5px;
+				.card-image{
+					width:3rem;
+					height:3rem;
+					opacity:1 !important;
+					img{
+						width:100%;
+						height:100%;
+						
+					}
+					background-color: #f0f0f0;
+				}
+				.title{
+          color: #303133;
+          padding: .1rem .2rem;
+          font-size: .24rem;
+          display: -webkit-box;
+          overflow: hidden;
+          white-space: normal !important;
+          text-overflow: ellipsis;
+          word-wrap: break-word;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          height: .7rem;
+          line-height: .4rem;
+          text-align: left;
+          margin-top: .1rem;
+				}
+				.price-box{
+					display: flex;
+					justify-content: space-between;
+					padding:.05rem .2rem .2rem .2rem;
+					color:#909399;
+					font-size: .16rem;
+					align-items: center;
+					.price{
+						color:#da3632;
+						font-size:.24rem;
+						
+					}
+				}
+			}
+		}
+	}
   .storenew{
     margin: .3rem 0;
 		.title{
@@ -1525,12 +1836,18 @@ export default {
       .top {
         background-color: #f2f1f2;
         width: 100%;
-        padding: .1rem 0.2rem 0.2rem 0.2rem;
-        overflow: hidden;
+        padding: 0.2rem;
+        display: flex;
+        justify-content: space-between;
         .title {
           text-align: center;
-          font-size: 0.28rem;
+          font-size: 0.3rem;
           color: #111111;
+        }
+        .sectitle {
+          text-align: center;
+          font-size: 0.28rem;
+          color: #999;
         }
         .more {
           line-height: 0.4rem;

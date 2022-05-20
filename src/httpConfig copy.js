@@ -198,6 +198,7 @@ const config = {
 
     // 店铺相关
     getStoreList: request + 'Store/getStoreList', // 首页店铺列表
+    getIndexAd: request + 'StoreAdv/getIndexAd',
     storeHome: request + 'Store/storeHome', // 店铺首页
     storeHotClass: request + 'Store/storeHotClass', // 店铺热门分类
     storeGoodsAll: request + 'Store/storeGoodsAll', // 店铺全部宝贝
