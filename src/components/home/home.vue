@@ -34,7 +34,7 @@
     ></news-flash>
 
     <div>
-      <div class="offline-node" v-if="shoplist">
+      <div class="offline-node" v-if="newoffline.length>0">
         <div class="title">
           <div class="title-left"></div>
           <div class="name">线下节点</div>
@@ -45,13 +45,13 @@
           <img src="../../assets/activity/goods.png" class="offline-img"/>
           </div>
           <div class="cardstore">
-              <div class="cardd" v-for="good in shoplist.slice(0,6)" :key="good.id" @click="shopHome(good.id)">
+              <div class="cardd" v-for="good in newoffline.slice(0,6)" :key="good.id" @click="shopHome(good.id)">
                 <div class="card-image">
-                  <img :src="URL+good.store_logo" class="img"/>
+                  <img :src="URL+good.adv_content" class="img"/>
                 </div>
                 <div class="bd-card">
                   <div class="sec-card">
-                    <img :src="URL+good.store_logo" />
+                    <img :src="URL+good.ad_url" />
                   </div>
                   <div class="title-main">￥0.1</div>
                 </div>
@@ -64,7 +64,7 @@
       <img src="../../assets/m.png" class="banner-img"/>
     </div>
     <div>
-      <div class="Redeem" v-if="shoplist">
+      <div class="Redeem" v-if="newintegral.length>0">
         <div class="title">
           <div class="title-left"></div>
           <div class="name">积分兑换</div>
@@ -73,13 +73,13 @@
         </div>
         <div class="offline-card">
           <div class="cardstore">
-              <div class="cardd" v-for="good in shoplist.slice(0,6)" :key="good.id" @click="shopHome(good.id)">
+              <div class="cardd" v-for="good in newintegral.slice(0,6)" :key="good.id" @click="shopHome(good.id)">
                 <div class="card-image">
-                  <img :src="URL+good.store_logo" class="img"/>
+                  <img :src="URL+good.adv_content" class="img"/>
                 </div>
                 <div class="bd-card">
                   <div class="sec-card">
-                    <img :src="URL+good.store_logo" />
+                    <img :src="URL+good.ad_url" />
                   </div>
                   <div class="title-main">￥0.1</div>
                 </div>
@@ -89,7 +89,7 @@
       </div>
     </div>
     <div>
-      <div class="Recommended_store" v-if="shoplist">
+      <div class="Recommended_store" v-if="newstore.length>0">
         <div class="title">
           <div class="title-left"></div>
           <div class="name">推荐店铺</div>
@@ -98,13 +98,13 @@
         </div>
         <div class="offline-card">
           <div class="cardstore">
-              <div class="cardd" v-for="good in shoplist.slice(0,6)" :key="good.id" @click="shopHome(good.id)">
+              <div class="cardd" v-for="good in newstore.slice(0,6)" :key="good.id" @click="shopHome(good.id)">
                 <div class="card-image">
-                  <img :src="URL+good.store_logo" class="img"/>
+                  <img :src="URL+good.adv_content" class="img"/>
                 </div>
                 <div class="bd-card">
                   <div class="sec-card">
-                    <img :src="URL+good.store_logo" />
+                    <img :src="URL+good.ad_url" />
                   </div>
                   <div class="title-main">￥0.1</div>
                 </div>
@@ -114,21 +114,21 @@
       </div>
     </div>
     <div>
-      <div class="New-arrivals" v-if="guesLike.length>0">
+      <div class="New-arrivals" v-if="newcross">
         <div class="title">
           <div class="title-left"></div>
           <div class="name">新品上架</div>
           <div class="name-dis">创造价值</div>
         </div>
         <div class="cards">
-            <div class="card" v-for="good in guesLike.slice(0,6)" :key="good.id" @click="enterDetail(good)">
+            <div class="card">
               <div class="card-image">
-                <img :src="URL+good.pic_url" />
+                <img :src="URL+newcross.adv_content" />
               </div>
-              <div class="title">{{good.title}}</div>
+              <div class="title">{{newcross.adv_title}}</div>
               <div class="price-box">
-                <span class="price">￥{{good.price_member}}</span>
-                <span>已售 {{good.sales_sum}}</span>
+                <span class="price">￥0.1</span>
+                <span>已售 1</span>
               </div>
             </div>		
         </div>
@@ -243,17 +243,16 @@ export default {
       shoplist:[],
       couponData: [],
       apicolor: '',
-      integralGood:'',
       intergral_lower:'',
       intergral_upper:'',
-      showTimeH:'00',
-      showTimeM:'00',
-      showTimes:'00',
-      countDownTime:0,
       slide_switch: false,
       roll_switch: true,
       storeProduct:null,
       wapLogo:'',
+      newoffline:'',
+      newintegral:'',
+      newstore:'',
+      newcross:'',
     };
   },
   computed: {
@@ -264,7 +263,6 @@ export default {
     this.getFavLogo();
     this.styColor();
     this.newFloor();
-    this.seckillList();
     var userName = this.$route.params.userName;
     this.getData = userName;
     this.axios({
@@ -294,7 +292,6 @@ export default {
       this.getStoreProductAjax();
   },
   mounted() {
-    this.integralGoodsList();
     this.getFloor();
     var that = this;
      setTimeout(that.getFloor, 800);
@@ -327,42 +324,6 @@ export default {
                     console.log(error);
                 });
           },
-          countDownTimer() {
-          if(this.countDownTime > 0) {
-              setTimeout(() => {
-                  this.countDownTime -= 1;
-                  var h = Math.floor(this.countDownTime / 3600);
-                  var m = Math.floor(this.countDownTime % 3600 / 60);
-                  var s = Math.floor(this.countDownTime % 3600 % 60);
-                  // var hDisplay = h > 0 ? h + (h == 1 ? "" : "") : '00' + "";
-                  // var mDisplay = m > 0 ? m + (m == 1 ? "" : "") : '00' + "";
-                  // var sDisplay = s > 0 ? s + (s == 1 ? "" : "") : '00' + "";
-                  var hDisplay = h < 10 ?  "0" + h : h;
-                  var mDisplay = m < 10 ?  "0" + m : m;
-                  var sDisplay = s < 10 ?  "0" + s : s;
-                  this.showTimeH = hDisplay;
-                  this.showTimeM = mDisplay;
-                  this.showTimes = sDisplay;
-                  this.countDownTimer()
-              }, 1000)
-          }
-      },
-    seckillList() {
-      this.axios
-          .post(this.$httpConfig.seckillList)
-          .then(res => {
-            if(res.data.status == 1){
-              this.countDownTime =res.data.data.time.countdown;
-              this.flashgood = res.data.data.goods;
-              this.countDownTimer();
-            }
-          })
-          .catch(error => {
-              this.countDownTime =error.data.data.time.countdown;
-              this.flashgood = error.data.data.goods;
-              console.log(error);
-          });
-    },
     styColor() {
         this.axios.post(this.$httpConfig.StyColor, QS.stringify({
           token: sessionStorage.getItem("data_token")
@@ -480,22 +441,6 @@ export default {
           });
       }
     },
-    integralGoodsList(){
-        this.axios({
-          method:'post',
-          url:this.$httpConfig.integralGoodsList,
-          params:{
-              intergral_lower:this.intergral_lower,
-              intergral_upper:this.intergral_upper,
-              page:1,
-                token: sessionStorage.getItem("data_token")
-          }
-      }).then((res) => {
-          this.integralGood = res.data.data.records;
-      }).catch((err) => {
-          console.log(err);
-      })
-    },
     getStoreProductAjax() {
       this.axios.post(this.$httpConfig.getStoreList, QS.stringify({
         sort_types:this.sort_types,
@@ -524,7 +469,10 @@ export default {
         store_id:18,
         token: sessionStorage.getItem("data_token"),
       })).then((res) => {
-
+          this.newoffline = res.data.data.offline;
+          this.newintegral = res.data.data.integral;
+          this.newstore = res.data.data.store;
+          this.newcross = res.data.data.cross;
       }).catch((err) => {
         console.log(err)
       });
@@ -908,7 +856,7 @@ export default {
     }
   }
   .offline-node{
-    background-color: #f2e8e8;
+    background: linear-gradient(to bottom, #e8e3e0, #eebdbd);
     padding: .2rem 0 .2rem .2rem;
 		.title{
 			display: flex;
@@ -959,7 +907,7 @@ export default {
 				background:white;
 				margin-right:.2rem;
 				overflow: hidden;
-				border-radius: .1rem;
+				border-radius: .2rem;
 				.card-image{
 					width:1.5rem;
 					height:1.5rem;
@@ -977,7 +925,7 @@ export default {
         .sec-card{
           width: 1rem;
           height: .5rem;  
-          padding: .05rem;
+          // padding: .05rem;
           position: relative;
           margin: -.25rem auto 0;
           overflow: hidden;
@@ -1061,7 +1009,7 @@ export default {
 				background:white;
 				margin-right:.2rem;
 				overflow: hidden;
-				border-radius: .1rem;
+				border-radius: .2rem;
 				.card-image{
 					width:1.5rem;
 					height:1.5rem;
@@ -1079,7 +1027,7 @@ export default {
         .sec-card{
           width: 1rem;
           height: .5rem;  
-          padding: .05rem;
+          // padding: .05rem;
           position: relative;
           margin: -.25rem auto 0;
           overflow: hidden;
@@ -1157,7 +1105,7 @@ export default {
 				background:white;
 				margin-right:.2rem;
 				overflow: hidden;
-				border-radius: .1rem;
+				border-radius: .2rem;
 				.card-image{
 					width:1.5rem;
 					height:1.5rem;
@@ -1175,7 +1123,7 @@ export default {
         .sec-card{
           width: 1rem;
           height: .5rem;  
-          padding: .05rem;
+          // padding: .05rem;
           position: relative;
           margin: -.25rem auto 0;
           overflow: hidden;
@@ -1251,7 +1199,7 @@ export default {
 				background:white;
 				margin-right:.2rem;
 				overflow: hidden;
-				// border-radius: 5px;
+				border-radius: .2rem;
 				.card-image{
 					width:3rem;
 					height:3rem;
