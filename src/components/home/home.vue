@@ -41,27 +41,18 @@
           <div class="name-dis">热推项目等</div>
         </div>
         <div class="offline-card">
-          <div class="offline-div">
-          <img src="../../assets/activity/goods.png" class="offline-img"/>
-          </div>
           <div class="cardstore">
-              <div class="cardd" v-for="good in newoffline.slice(0,6)" :key="good.id" @click="shopHome(good.id)">
+              <div class="cardd" v-for="good in newoffline" :key="good.id" @click="linkTo(good.ad_url)">
                 <div class="card-image">
                   <img :src="URL+good.adv_content" class="img"/>
-                </div>
-                <div class="bd-card">
-                  <div class="sec-card">
-                    <img :src="URL+good.ad_url" />
-                  </div>
-                  <div class="title-main">￥0.1</div>
                 </div>
               </div>		
           </div>
         </div>
       </div>
     </div>
-    <div class="img-div">
-      <img src="../../assets/m.png" class="banner-img"/>
+    <div class="img-div" v-if="newcross">
+      <img :src="URL+newcross.adv_content" class="banner-img" @click="linkTo(newcross.ad_url)"/>
     </div>
     <div>
       <div class="Redeem" v-if="newintegral.length>0">
@@ -73,15 +64,9 @@
         </div>
         <div class="offline-card">
           <div class="cardstore">
-              <div class="cardd" v-for="good in newintegral.slice(0,6)" :key="good.id" @click="shopHome(good.id)">
+              <div class="cardd" v-for="good in newintegral" :key="good.id" @click="linkTo(good.ad_url)">
                 <div class="card-image">
                   <img :src="URL+good.adv_content" class="img"/>
-                </div>
-                <div class="bd-card">
-                  <div class="sec-card">
-                    <img :src="URL+good.ad_url" />
-                  </div>
-                  <div class="title-main">￥0.1</div>
                 </div>
               </div>		
           </div>
@@ -94,19 +79,12 @@
           <div class="title-left"></div>
           <div class="name">推荐店铺</div>
           <div class="name-dis">创造价值</div>
-          <!-- <div class="more">更多</div> -->
         </div>
         <div class="offline-card">
           <div class="cardstore">
-              <div class="cardd" v-for="good in newstore.slice(0,6)" :key="good.id" @click="shopHome(good.id)">
+              <div class="cardd" v-for="good in newstore" :key="good.id" @click="linkTo(good.ad_url)">
                 <div class="card-image">
                   <img :src="URL+good.adv_content" class="img"/>
-                </div>
-                <div class="bd-card">
-                  <div class="sec-card">
-                    <img :src="URL+good.ad_url" />
-                  </div>
-                  <div class="title-main">￥0.1</div>
                 </div>
               </div>		
           </div>
@@ -314,16 +292,19 @@ export default {
     $("html,body").animate({ scrollTop: "0px" }, 300);
   },
   methods: {
-          getFavLogo() {
-            this.axios
-                .post(this.$httpConfig.aboutEtcetera)
-                .then(res => {
-                  this.wapLogo = res.data.data.logo_name;
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-          },
+    getFavLogo() {
+      this.axios
+          .post(this.$httpConfig.aboutEtcetera)
+          .then(res => {
+            this.wapLogo = res.data.data.logo_name;
+          })
+          .catch(error => {
+              console.log(error);
+          });
+    },
+    linkTo(link){
+        location.href = link;
+    },
     styColor() {
         this.axios.post(this.$httpConfig.StyColor, QS.stringify({
           token: sessionStorage.getItem("data_token")
@@ -885,20 +866,11 @@ export default {
 		}
     .offline-card{
       display: flex;
-      .offline-div{
-        border-radius: .1rem;
-      }
-      .offline-img{
-        width: 1.5rem;
-        height: 2.5rem;
-        border-radius: .1rem;
-      }
     }
 		.cardstore{
 			display: flex;
 			flex-direction: row;
 			overflow-x: auto;
-			padding:0 .2rem;
 			flex-wrap: nowrap;
 			.cardd{
 				width:1.5rem;
@@ -907,58 +879,26 @@ export default {
 				background:white;
 				margin-right:.2rem;
 				overflow: hidden;
-				border-radius: .2rem;
+        border-radius: .2rem;
 				.card-image{
 					width:1.5rem;
-					height:1.5rem;
+					height:2.5rem;
 					opacity:1 !important;
 					.img{
 						width:100%;
 						height:100%;
-						
 					}
 					background-color: #f0f0f0;
-				}
-        .bd-card{
-          // background: #f1f1f1;
-        }
-        .sec-card{
-          width: 1rem;
-          height: .5rem;  
-          // padding: .05rem;
-          position: relative;
-          margin: -.25rem auto 0;
-          overflow: hidden;
-          z-index: 99;
-          background-color: #f0f0f0;
-					img{
-						width:100%;
-						height:100%;
-					  text-align: center;
-					}
-				}
-				.title-main{
-          color: #d02629;
-          padding: .06rem .2rem;
-          font-size: .3rem;
-          display: -webkit-box;
-          overflow: hidden;
-          white-space: normal !important;
-          text-overflow: ellipsis;
-          word-wrap: break-word;
-          -webkit-line-clamp: 1;
-          -webkit-box-orient: vertical;
-          height: .4rem;
-          line-height: .46rem;
-          text-align: center;
 				}
 			}
 		}
 	}
   .img-div{
-    margin: .2rem 0 0 0;
+    margin: .2rem .2rem 0 .2rem;
+    height: .84rem;
     .banner-img{
       width: 100%;
+      height: 100%;
     }
   }
   .Redeem{
@@ -1000,7 +940,6 @@ export default {
 			display: flex;
 			flex-direction: row;
 			overflow-x: auto;
-			padding:0 .2rem 0 0;
 			flex-wrap: nowrap;
 			.cardd{
 				width:1.5rem;
@@ -1009,50 +948,16 @@ export default {
 				background:white;
 				margin-right:.2rem;
 				overflow: hidden;
-				border-radius: .2rem;
+        border-radius: .2rem;
 				.card-image{
 					width:1.5rem;
-					height:1.5rem;
+					height:2.5rem;
 					opacity:1 !important;
 					.img{
 						width:100%;
 						height:100%;
-						
 					}
 					background-color: #f0f0f0;
-				}
-        .bd-card{
-          // background: #f1f1f1;
-        }
-        .sec-card{
-          width: 1rem;
-          height: .5rem;  
-          // padding: .05rem;
-          position: relative;
-          margin: -.25rem auto 0;
-          overflow: hidden;
-          z-index: 99;
-          background-color: #f0f0f0;
-					img{
-						width:100%;
-						height:100%;
-					  text-align: center;
-					}
-				}
-				.title-main{
-          color: #d02629;
-          padding: .06rem .2rem;
-          font-size: .3rem;
-          display: -webkit-box;
-          overflow: hidden;
-          white-space: normal !important;
-          text-overflow: ellipsis;
-          word-wrap: break-word;
-          -webkit-line-clamp: 1;
-          -webkit-box-orient: vertical;
-          height: .4rem;
-          line-height: .46rem;
-          text-align: center;
 				}
 			}
 		}
@@ -1096,7 +1001,6 @@ export default {
 			display: flex;
 			flex-direction: row;
 			overflow-x: auto;
-			padding:0 .2rem 0 0;
 			flex-wrap: nowrap;
 			.cardd{
 				width:1.5rem;
@@ -1108,7 +1012,7 @@ export default {
 				border-radius: .2rem;
 				.card-image{
 					width:1.5rem;
-					height:1.5rem;
+					height:2.5rem;
 					opacity:1 !important;
 					.img{
 						width:100%;
@@ -1116,39 +1020,6 @@ export default {
 						
 					}
 					background-color: #f0f0f0;
-				}
-        .bd-card{
-          // background: #f1f1f1;
-        }
-        .sec-card{
-          width: 1rem;
-          height: .5rem;  
-          // padding: .05rem;
-          position: relative;
-          margin: -.25rem auto 0;
-          overflow: hidden;
-          z-index: 99;
-          background-color: #f0f0f0;
-					img{
-						width:100%;
-						height:100%;
-					  text-align: center;
-					}
-				}
-				.title-main{
-          color: #d02629;
-          padding: .06rem .2rem;
-          font-size: .3rem;
-          display: -webkit-box;
-          overflow: hidden;
-          white-space: normal !important;
-          text-overflow: ellipsis;
-          word-wrap: break-word;
-          -webkit-line-clamp: 1;
-          -webkit-box-orient: vertical;
-          height: .4rem;
-          line-height: .46rem;
-          text-align: center;
 				}
 			}
 		}
