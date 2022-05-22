@@ -103,10 +103,17 @@
               <div class="card-image">
                 <img :src="URL+newcross.adv_content" />
               </div>
-              <div class="title">{{newcross.adv_title}}</div>
+              <!-- <div class="title">{{newcross.adv_title}}</div> -->
+              <p class="title">
+                <span class="shop-grade">已售</span>
+                {{newcross.adv_title}}
+              </p>
+            <div class="showdiv">
+              <p class="discountshow">满减</p>
+            </div>
               <div class="price-box">
                 <span class="price">￥0.1</span>
-                <span>已售 1</span>
+                <span class="count">已售</span>
               </div>
             </div>		
         </div>
@@ -144,15 +151,17 @@
             @click="enterDetail(i)"
           >
             <img v-lazy="URL+i.pic_url"/>
-            <p class="title">
-              <span class="shop-grade" v-if="i.store_grade_name">{{i.store_grade_name}}</span>
+         <p class="title">
+              <span class="shop-grade">满减</span>
               {{i.title}}
             </p>
-            <!-- <div class="showdiv">
-              <p class="discountshow" v-if="i.reduction == 1">满减</p>
-              <p class="discountshow" v-if="i.gift == 1">满赠</p>
-            </div> -->
-            <p class="price">￥{{i.price_member}}</p>
+            <div class="showdiv">
+              <p class="discountshow">满减</p>
+            </div>
+            <div class="price-box">
+              <span class="price">￥{{i.price_member}}</span>
+              <span class="count">已售</span>
+            </div>
           </div>
         </div>
       </li>
@@ -218,14 +227,12 @@ export default {
       RichScan:require('@/assets/images/RichScan.png'),
       advices:require('@/assets/images/meg.png'),
       sort_types:'store_sort',
-      shoplist:[],
       couponData: [],
       apicolor: '',
       intergral_lower:'',
       intergral_upper:'',
       slide_switch: false,
       roll_switch: true,
-      storeProduct:null,
       wapLogo:'',
       newoffline:'',
       newintegral:'',
@@ -263,11 +270,7 @@ export default {
       .catch(err => {
         console.log(err);
       });
-
-      // this.getgoodInfo();
-      this.getStoreListAjax();
       this.getIndexAd();
-      this.getStoreProductAjax();
   },
   mounted() {
     this.getFloor();
@@ -421,29 +424,6 @@ export default {
             }
           });
       }
-    },
-    getStoreProductAjax() {
-      this.axios.post(this.$httpConfig.getStoreList, QS.stringify({
-        sort_types:this.sort_types,
-        store_id:2,
-        token: sessionStorage.getItem("data_token"),
-      })).then((res) => {
-          if(res.data.data){
-            this.storeProduct = res.data.data.records.find((rec)=>rec.id==2);
-          }
-      }).catch((err) => {
-        console.log(err)
-      });
-    },
-    getStoreListAjax() {
-      this.axios.post(this.$httpConfig.getStoreList, QS.stringify({
-        // sort_types:this.sort_types,
-        token: sessionStorage.getItem("data_token"),
-      })).then((res) => {
-        this.shoplist = res.data.data.records;
-      }).catch((err) => {
-        console.log(err)
-      });
     },
     getIndexAd() {
       this.axios.post(this.$httpConfig.getIndexAd, QS.stringify({
@@ -1066,7 +1046,6 @@ export default {
 			.card{
 				width:3rem;
 				flex: 0 0 auto;
-				height:4.5rem;
 				background:white;
 				margin-right:.2rem;
 				overflow: hidden;
@@ -1082,10 +1061,7 @@ export default {
 					}
 					background-color: #f0f0f0;
 				}
-				.title{
-          color: #303133;
-          padding: .1rem .2rem;
-          font-size: .24rem;
+        .title {
           display: -webkit-box;
           overflow: hidden;
           white-space: normal !important;
@@ -1093,23 +1069,52 @@ export default {
           word-wrap: break-word;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
-          height: .7rem;
+          color: #343434;
+          height: .8rem;
           line-height: .4rem;
           text-align: left;
+          padding: 0 0.2rem;
+          font-size: .28rem;
           margin-top: .1rem;
-				}
+            .shop-grade{
+              font-size: .22rem;
+              background: #de2d35;
+              color: white;
+              border-radius: .05rem;
+              padding: .05rem .1rem;
+              text-align: center;
+            }
+        }
+        .showdiv{
+            display: flex;
+            padding: .01rem .2rem;
+            .discountshow{
+              color: #da3632;
+              height: .21rem;
+              padding: .04rem .02rem .02rem .02rem;
+              font-size: .22rem;
+              margin: .05rem .07rem 0 .02rem;
+            }
+        }
 				.price-box{
 					display: flex;
 					justify-content: space-between;
-					padding:.05rem .2rem .2rem .2rem;
-					color:#909399;
-					font-size: .16rem;
-					align-items: center;
+					padding:.1rem .2rem;								
+          // height: .65rem;
+          // line-height: .55rem;
 					.price{
 						color:#da3632;
-						font-size:.24rem;
-						
+						font-size:.26rem;
+						font-weight: bold;
 					}
+          .count{
+            font-size: .2rem;
+            color: #999;
+            background: #d5d7db;
+            border-radius: .05rem;
+            padding: .05rem .1rem;
+            text-align: center;
+          }
 				}
 			}
 		}
@@ -1715,12 +1720,13 @@ export default {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
+        margin: 0 .2rem;
         .floor-goods {
-          margin-top: 2%;
+          margin-bottom: .2rem;
           background-color: #fff;
-          width: 49%;
+          width: 48.7%;
           float: left;
-          // border: 3px solid #F2F1F2;
+          border-radius: .2rem;
           box-sizing: border-box;
           display: flex;
           flex-direction: column;
@@ -1730,6 +1736,8 @@ export default {
             height: 3.658rem;
             align-self: center;
             border-bottom: 0.5px solid #f2f1f2;
+            border-top-left-radius: .2rem;
+            border-top-right-radius: .2rem;
           }
           .title {
             display: -webkit-box;
@@ -1758,33 +1766,32 @@ export default {
           .showdiv{
             display: flex;
             padding: .01rem .2rem;
-            .couponshow{
-              background: url(../../assets/showcoupon.png) no-repeat;
-              background-size: 100% 100%;
-              font-size: .2rem;
-              padding: .25em .1rem 0 .1rem;
-              // height: .25rem;
-              margin: .06rem .07rem 0 0;
-              color: #fff;
-            }
             .discountshow{
               color: #da3632;
-              border: 1px solid #da3632;
               height: .21rem;
               padding: .04rem .02rem .02rem .02rem;
-              font-size: .18rem;
+              font-size: .22rem;
               margin: .05rem .07rem 0 .02rem;
             }
         }
-        .price {
-          color: #da3632;
-          font-size: .26rem;
-          font-weight: bold;
-          text-align: left;
-          padding: 0 0.2rem;
-          height: .65rem;
-          line-height: .55rem;
-      }
+				.price-box{
+					display: flex;
+					justify-content: space-between;
+					padding:.1rem .2rem;								
+					.price{
+						color:#da3632;
+						font-size:.26rem;
+						font-weight: bold;
+					}
+          .count{
+            font-size: .2rem;
+            color: #999;
+            background: #d5d7db;
+            border-radius: .05rem;
+            padding: .05rem .1rem;
+            text-align: center;
+          }
+				}
       }
     }
   }
