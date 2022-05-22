@@ -92,27 +92,27 @@
       </div>
     </div>
     <div>
-      <div class="New-arrivals" v-if="newcross">
+      <div class="New-arrivals" v-if="guesLike.length>0">
         <div class="title">
           <div class="title-left"></div>
           <div class="name">新品上架</div>
           <div class="name-dis">创造价值</div>
         </div>
         <div class="cards">
-            <div class="card">
+            <div class="card" v-for="good in guesLike" :key="good.id" @click="enterDetail(good)">
               <div class="card-image">
-                <img :src="URL+newcross.adv_content" />
+                <img :src="URL+good.pic_url" />
               </div>
               <!-- <div class="title">{{newcross.adv_title}}</div> -->
               <p class="title">
                 <span class="shop-grade">已售</span>
-                {{newcross.adv_title}}
+                {{good.title}}
               </p>
             <div class="showdiv">
               <p class="discountshow">满减</p>
             </div>
               <div class="price-box">
-                <span class="price">￥0.1</span>
+                <span class="price">￥{{good.price_member}}</span>
                 <span class="count">已售</span>
               </div>
             </div>		
@@ -1039,9 +1039,7 @@ export default {
 		.cards{
 			display: flex;
 			flex-direction: row;
-			// width:100%;
 			overflow-x: auto;
-			padding:0 .2rem 0 0;
 			flex-wrap: nowrap;
 			.card{
 				width:3rem;
