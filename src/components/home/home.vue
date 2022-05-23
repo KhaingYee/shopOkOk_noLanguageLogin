@@ -105,15 +105,15 @@
               </div>
               <!-- <div class="title">{{newcross.adv_title}}</div> -->
               <p class="title">
-                <span class="shop-grade">已售</span>
+                <span class="shop-grade">自营</span>
                 {{good.title}}
               </p>
             <div class="showdiv">
-              <p class="discountshow">满减</p>
+              <p class="discountshow">以旧换新</p>
             </div>
               <div class="price-box">
                 <span class="price">￥{{good.price_member}}</span>
-                <span class="count">已售</span>
+                <span class="count">看相似</span>
               </div>
             </div>		
         </div>
@@ -122,25 +122,25 @@
     <ul class="floor">
       <li class="floor-item">
         <div class="top">
-          <div class="five-title">
-            <div class="title">猜你</div>
-            <div class="sectitle">猜你喜欢</div>
+          <div class="five-title" @click="homeActive(0)">
+            <div class="title" :class="{active: titleActive == 0}">精选</div>
+            <div class="sectitle" :class="{secactive: titleActive == 0}">为你推荐</div>
           </div>
-          <div class="five-title">
-            <div class="title">猜你</div>
-            <div class="sectitle">猜你喜欢</div>
+          <div class="five-title" @click="homeActive(1)">
+            <div class="title" :class="{active: titleActive == 1}">新品</div>
+            <div class="sectitle" :class="{secactive: titleActive == 1}">新品速递</div>
           </div>
-          <div class="five-title">
-            <div class="title">猜你</div>
-            <div class="sectitle">猜你喜欢</div>
+          <div class="five-title" @click="homeActive(2)">
+            <div class="title" :class="{active: titleActive == 2}">直播</div>
+            <div class="sectitle" :class="{secactive: titleActive == 2}">主播力荐</div>
           </div>
-          <div class="five-title">
-            <div class="title">猜你</div>
-            <div class="sectitle">猜你喜欢</div>
+          <div class="five-title" @click="homeActive(3)">
+            <div class="title" :class="{active: titleActive == 3}">实惠</div>
+            <div class="sectitle" :class="{secactive: titleActive == 3}">便宜好货</div>
           </div>
-          <div class="five-title">
-            <div class="title">猜你</div>
-            <div class="sectitle">猜你喜欢</div>
+          <div class="five-title" @click="homeActive(4)">
+            <div class="title" :class="{active: titleActive == 4}">进口</div>
+            <div class="sectitle" :class="{secactive: titleActive == 4}">京东国际</div>
           </div>
         </div>
         <div class="goods-box" v-if="floorList.length>0">
@@ -152,15 +152,15 @@
           >
             <img v-lazy="URL+i.pic_url"/>
          <p class="title">
-              <span class="shop-grade">满减</span>
+              <span class="shop-grade">自营</span>
               {{i.title}}
             </p>
             <div class="showdiv">
-              <p class="discountshow">满减</p>
+              <p class="discountshow">以旧换新</p>
             </div>
             <div class="price-box">
               <span class="price">￥{{i.price_member}}</span>
-              <span class="count">已售</span>
+              <span class="count">看相似</span>
             </div>
           </div>
         </div>
@@ -238,6 +238,7 @@ export default {
       newintegral:'',
       newstore:'',
       newcross:'',
+      titleActive:0,
     };
   },
   computed: {
@@ -307,6 +308,9 @@ export default {
     },
     linkTo(link){
         location.href = link;
+    },
+    homeActive(index){
+      this.titleActive = index;
     },
     styColor() {
         this.axios.post(this.$httpConfig.StyColor, QS.stringify({
@@ -879,6 +883,7 @@ export default {
     .banner-img{
       width: 100%;
       height: 100%;
+      border-radius: .2rem;
     }
   }
   .Redeem{
@@ -1664,12 +1669,19 @@ export default {
         .title {
           text-align: center;
           font-size: 0.3rem;
-          color: #111111;
+          color: #444;
         }
         .sectitle {
           text-align: center;
           font-size: 0.28rem;
           color: #999;
+        }
+        .active{
+          color:#000;
+        }
+        .secactive{
+          color:#d02629;
+          // background: url("../../assets/conner.jpg") no-repeat;
         }
         .more {
           line-height: 0.4rem;
