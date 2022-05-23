@@ -1102,7 +1102,7 @@ export default {
 				.price-box{
 					display: flex;
 					justify-content: space-between;
-					padding:.1rem .2rem;								
+					padding:.1rem .2rem .2rem .2rem;								
           // height: .65rem;
           // line-height: .55rem;
 					.price{
@@ -1787,7 +1787,7 @@ export default {
 				.price-box{
 					display: flex;
 					justify-content: space-between;
-					padding:.1rem .2rem;								
+					padding:.1rem .2rem .2rem .2rem;								
 					.price{
 						color:#da3632;
 						font-size:.26rem;
