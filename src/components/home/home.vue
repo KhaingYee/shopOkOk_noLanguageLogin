@@ -124,23 +124,23 @@
         <div class="top">
           <div class="five-title" @click="homeActive(0)">
             <div class="title" :class="{active: titleActive == 0}">精选</div>
-            <div class="sectitle" :class="{secactive: titleActive == 0}">为你推荐</div>
+            <div class="sectitle" :class="{secactive: titleActive == 0}">为你推荐 <img src="../../assets/conner.jpg" class="img-conner" v-if="titleActive == 0"/></div>
           </div>
           <div class="five-title" @click="homeActive(1)">
             <div class="title" :class="{active: titleActive == 1}">新品</div>
-            <div class="sectitle" :class="{secactive: titleActive == 1}">新品速递</div>
+            <div class="sectitle" :class="{secactive: titleActive == 1}">新品速递 <img src="../../assets/conner.jpg" class="img-conner" v-if="titleActive == 1"/></div>
           </div>
           <div class="five-title" @click="homeActive(2)">
             <div class="title" :class="{active: titleActive == 2}">直播</div>
-            <div class="sectitle" :class="{secactive: titleActive == 2}">主播力荐</div>
+            <div class="sectitle" :class="{secactive: titleActive == 2}">主播力荐 <img src="../../assets/conner.jpg" class="img-conner" v-if="titleActive == 2"/></div>
           </div>
           <div class="five-title" @click="homeActive(3)">
             <div class="title" :class="{active: titleActive == 3}">实惠</div>
-            <div class="sectitle" :class="{secactive: titleActive == 3}">便宜好货</div>
+            <div class="sectitle" :class="{secactive: titleActive == 3}">便宜好货 <img src="../../assets/conner.jpg" class="img-conner" v-if="titleActive == 3"/></div>
           </div>
           <div class="five-title" @click="homeActive(4)">
             <div class="title" :class="{active: titleActive == 4}">进口</div>
-            <div class="sectitle" :class="{secactive: titleActive == 4}">京东国际</div>
+            <div class="sectitle" :class="{secactive: titleActive == 4}">京东国际 <img src="../../assets/conner.jpg" class="img-conner" v-if="titleActive == 4"/></div>
           </div>
         </div>
         <div class="goods-box" v-if="floorList.length>0">
@@ -1679,13 +1679,17 @@ export default {
           text-align: center;
           font-size: 0.28rem;
           color: #999;
+          .img-conner{
+           width: .2rem;
+            height: .2rem;
+            margin: .25rem 0 0 -.17rem;
+          }
         }
         .active{
           color:#000;
         }
         .secactive{
           color:#d02629;
-          // background: url("../../assets/conner.jpg") no-repeat;
         }
         .more {
           line-height: 0.4rem;
