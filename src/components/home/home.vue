@@ -162,6 +162,10 @@
               <span class="price">￥{{i.price_member}}</span>
               <span class="count">看相似</span>
             </div>
+            <div class="priceimg-box">
+              <span class="price">￥{{i.price_member}}</span>
+              <img src="../../assets/plus.jpg" class="img"/>
+            </div>
           </div>
         </div>
       </li>
@@ -821,7 +825,7 @@ export default {
     }
   }
   .offline-node{
-    background: linear-gradient(to bottom, #e8e3e0, #eebdbd);
+    background: linear-gradient(to bottom, #fbf4f1, #fcdce0);
     padding: .2rem 0 .2rem .2rem;
 		.title{
 			display: flex;
@@ -1733,6 +1737,7 @@ export default {
         margin: 0 .2rem;
         .floor-goods {
           margin-bottom: .2rem;
+          padding-bottom: .1rem;
           background-color: #fff;
           width: 48.7%;
           float: left;
@@ -1787,7 +1792,7 @@ export default {
 				.price-box{
 					display: flex;
 					justify-content: space-between;
-					padding:.1rem .2rem .2rem .2rem;								
+					padding:.1rem .2rem .1rem .2rem;								
 					.price{
 						color:#da3632;
 						font-size:.26rem;
@@ -1800,6 +1805,19 @@ export default {
             border-radius: .05rem;
             padding: .05rem .1rem;
             text-align: center;
+          }
+				}
+        .priceimg-box{
+					display: flex;	
+					padding:0 .2rem .1rem .2rem;								
+					.price{
+						color:#2f1918;
+						font-size:.26rem;
+					}
+          .img{
+            padding-left: .1rem;
+            width: .8rem;
+            height: .3rem;
           }
 				}
       }
