@@ -105,15 +105,15 @@
               </div>
               <!-- <div class="title">{{newcross.adv_title}}</div> -->
               <p class="title">
-                <span class="shop-grade">自营</span>
+                <img :src="URL+good.iconData" class="shop-grade"/>
                 {{good.title}}
               </p>
-            <div class="showdiv">
+            <!-- <div class="showdiv">
               <p class="discountshow">以旧换新</p>
-            </div>
+            </div> -->
               <div class="price-box">
                 <span class="price">￥{{good.price_member}}</span>
-                <span class="count">看相似</span>
+                <span class="count">已售 {{good.sales_sum}}</span>
               </div>
             </div>		
         </div>
@@ -152,7 +152,8 @@
           >
             <img v-lazy="URL+i.pic_url"/>
          <p class="title">
-              <span class="shop-grade">自营</span>
+              <!-- <span class="shop-grade">自营</span> -->
+              <img :src="URL+i.iconData" class="shop-grade"/>
               {{i.title}}
             </p>
             <div class="showdiv">
@@ -163,7 +164,7 @@
               <span class="count">看相似</span>
             </div>
             <div class="priceimg-box">
-              <span class="price">￥{{i.price_member}}</span>
+              <span class="price">￥{{i.price_market}}</span>
               <img src="../../assets/plus.jpg" class="img"/>
             </div>
           </div>
@@ -218,7 +219,6 @@ export default {
       promotions: [],
       currentPage: 1,
       floorList: [],
-      guesshot: [],
       guesLike:[],
       flashgood:[],
       isBottom: false,
@@ -390,11 +390,10 @@ export default {
       window.open(address);
     },
     newFloor() {
-        var params = { page: 1};
-        this.$HTTP(this.$httpConfig.indexFloor, params, "post")
+        var params = {token: sessionStorage.getItem("data_token")};
+        this.$HTTP(this.$httpConfig.homeNewGoods, params, "post")
           .then(res => {
-            this.guesLike = res.data.data.goods_news;
-            this.guesshot = res.data.data.hotGoods;
+            this.guesLike = res.data.data.data;
           })
           .catch(err => {
           });
@@ -408,26 +407,26 @@ export default {
           this.isRepeat = true;
         }
         var params = { page: this.currentPage };
-        this.$HTTP(this.$httpConfig.guessLove, params, "post")
+        this.$HTTP(this.$httpConfig.homeRecommend, params, "post")
           .then(res => {
             if (res.data.status == 1) {
               if (this.currentPage == 1) {
-                  this.floorList = res.data.data;
+                  this.floorList = res.data.data.data;
               } else {
                   this.floorList = [
                     ...this.floorList,
-                    ...res.data.data
+                    ...res.data.data.data
                   ]
               }
               this.isEnd = false;
             }
             this.isBottom = false;
-            if (res.data.status == 0 || res.data.data == null || res.data.data == [] || res.data.data == '') {
+            if (res.data.status == 0 || res.data.data.data == null || res.data.data.data == [] || res.data.data.data == '') {
               this.isEnd = true;
             }
           })
           .catch(err => {
-            if (err.data.status == 0 || err.data.data == null || err.data.data == [] || err.data.data == '') {
+            if (err.data.status == 0 || err.data.data.data == null || err.data.data.data == [] || err.data.data.data == '') {
               this.isEnd = true;
             }
           });
@@ -1084,12 +1083,9 @@ export default {
           font-size: .28rem;
           margin-top: .1rem;
             .shop-grade{
-              font-size: .22rem;
-              background: #de2d35;
-              color: white;
-              border-radius: .05rem;
-              padding: .05rem .1rem;
-              text-align: center;
+              width: 0.7rem;
+              height: 0.42rem;
+              border-radius: .1rem;
             }
         }
         .showdiv{
@@ -1117,10 +1113,6 @@ export default {
           .count{
             font-size: .2rem;
             color: #999;
-            background: #d5d7db;
-            border-radius: .05rem;
-            padding: .05rem .1rem;
-            text-align: center;
           }
 				}
 			}
@@ -1774,12 +1766,15 @@ export default {
             font-size: .28rem;
             margin-top: .1rem;
               .shop-grade{
-                font-size: .22rem;
-                background: #de2d35;
-                color: white;
-                border-radius: .05rem;
-                padding: .05rem .1rem;
-                text-align: center;
+                // font-size: .22rem;
+                // background: #de2d35;
+                // color: white;
+                // border-radius: .05rem;
+                // padding: .05rem .1rem;
+                // text-align: center;
+                width: 0.7rem;
+                height: 0.42rem;
+                border-radius: .1rem;
               }
           }
           .showdiv{

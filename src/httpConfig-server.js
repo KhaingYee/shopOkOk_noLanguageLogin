@@ -90,6 +90,8 @@ const config = {
     readLogo: request + "IntnetInformation/readLogo",
     advertise: request + "HomeIndex/getStoreAd",
     indexFloor: request + "GoodsClass/indexFloor", //首页楼层
+    homeNewGoods: request + "Goods/newGoods",
+    homeRecommend: request + "Goods/recommend",
     getAd: request + "Ad/getAd", //首页楼层中间广告
     getPanicGoods: request + 'Panic/getPanicGoods', //抢购
     panicGoodsDetail: request + 'Panic/panicGoodsDetail', //抢购详情
