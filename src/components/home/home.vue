@@ -122,25 +122,9 @@
     <ul class="floor">
       <li class="floor-item">
         <div class="top">
-          <div class="five-title" @click="homeActive(0)">
-            <div class="title" :class="{active: titleActive == 0}">精选</div>
-            <div class="sectitle" :class="{secactive: titleActive == 0}">为你推荐 <img src="../../assets/conner.jpg" class="img-conner" v-if="titleActive == 0"/></div>
-          </div>
-          <div class="five-title" @click="homeActive(1)">
-            <div class="title" :class="{active: titleActive == 1}">新品</div>
-            <div class="sectitle" :class="{secactive: titleActive == 1}">新品速递 <img src="../../assets/conner.jpg" class="img-conner" v-if="titleActive == 1"/></div>
-          </div>
-          <div class="five-title" @click="homeActive(2)">
-            <div class="title" :class="{active: titleActive == 2}">直播</div>
-            <div class="sectitle" :class="{secactive: titleActive == 2}">主播力荐 <img src="../../assets/conner.jpg" class="img-conner" v-if="titleActive == 2"/></div>
-          </div>
-          <div class="five-title" @click="homeActive(3)">
-            <div class="title" :class="{active: titleActive == 3}">实惠</div>
-            <div class="sectitle" :class="{secactive: titleActive == 3}">便宜好货 <img src="../../assets/conner.jpg" class="img-conner" v-if="titleActive == 3"/></div>
-          </div>
-          <div class="five-title" @click="homeActive(4)">
-            <div class="title" :class="{active: titleActive == 4}">进口</div>
-            <div class="sectitle" :class="{secactive: titleActive == 4}">京东国际 <img src="../../assets/conner.jpg" class="img-conner" v-if="titleActive == 4"/></div>
+          <div class="five-title" @click="homeActive(index)" v-for="(item,index) in className" :key="index">
+            <div class="title" :class="{active: titleActive == index}">{{item.title}}</div>
+            <div class="sectitle" :class="{secactive: titleActive == index}">{{item.name}} <img src="../../assets/conner.jpg" class="img-conner" v-if="titleActive == index"/></div>
           </div>
         </div>
         <div class="goods-box" v-if="floorList.length>0">
@@ -243,6 +227,7 @@ export default {
       newstore:'',
       newcross:'',
       titleActive:0,
+      className:''
     };
   },
   computed: {
@@ -251,6 +236,7 @@ export default {
   },
   created() {
     this.getFavLogo();
+    this.homeGetClass();
     this.styColor();
     this.newFloor();
     var userName = this.$route.params.userName;
@@ -305,6 +291,16 @@ export default {
           .post(this.$httpConfig.aboutEtcetera)
           .then(res => {
             this.wapLogo = res.data.data.logo_name;
+          })
+          .catch(error => {
+              console.log(error);
+          });
+    },
+    homeGetClass() {
+      this.axios
+          .post(this.$httpConfig.homeGetClass)
+          .then(res => {
+            this.className = res.data.data;
           })
           .catch(error => {
               console.log(error);
