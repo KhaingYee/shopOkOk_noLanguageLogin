@@ -105,7 +105,7 @@
               </div>
               <!-- <div class="title">{{newcross.adv_title}}</div> -->
               <p class="title">
-                <img :src="URL+good.iconData" class="shop-grade"/>
+                <img v-if="good.iconData" :src="URL+good.iconData" class="shop-grade"/>
                 {{good.title}}
               </p>
             <!-- <div class="showdiv">
@@ -153,7 +153,7 @@
             <img v-lazy="URL+i.pic_url"/>
          <p class="title">
               <!-- <span class="shop-grade">自营</span> -->
-              <img :src="URL+i.iconData" class="shop-grade"/>
+              <img v-if="i.iconData" :src="URL+i.iconData" class="shop-grade"/>
               {{i.title}}
             </p>
             <!-- <div class="showdiv">
