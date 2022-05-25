@@ -156,16 +156,16 @@
               <img :src="URL+i.iconData" class="shop-grade"/>
               {{i.title}}
             </p>
-            <div class="showdiv">
+            <!-- <div class="showdiv">
               <p class="discountshow">以旧换新</p>
-            </div>
+            </div> -->
             <div class="price-box">
               <span class="price">￥{{i.price_member}}</span>
-              <span class="count">看相似</span>
+              <!-- <span class="count">看相似</span> -->
             </div>
             <div class="priceimg-box">
               <span class="price">￥{{i.price_market}}</span>
-              <img src="../../assets/plus.jpg" class="img"/>
+              <!-- <img src="../../assets/plus.jpg" class="img"/> -->
             </div>
           </div>
         </div>
