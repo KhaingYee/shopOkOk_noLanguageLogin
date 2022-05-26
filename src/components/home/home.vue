@@ -2,7 +2,7 @@
   <div class="home" ref="home">
     <div v-title data-title="主页">主页</div>
     <!-- <home-header :userName="getData"></home-header> -->
-    <div class="header">
+    <div class="header" :style="'background-color:' + apicolor">
       <div class="new_header">
         <router-link to="/home">
           <img :src="URL + wapLogo" class="header_logo"/>
