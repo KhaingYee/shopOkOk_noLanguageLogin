@@ -245,7 +245,8 @@ export default {
       url: this.$httpConfig.home,
       method: "post", 
       params: {
-        token: sessionStorage.getItem("data_token")
+        token: sessionStorage.getItem("data_token"),
+        store_id:18,
       }
     })
       .then(res => {
