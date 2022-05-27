@@ -49,7 +49,8 @@ import qs from "qs"
             styColor() {
                 this.axios
                 .post(this.$httpConfig.StyColor, qs.stringify({
-                    token: sessionStorage.getItem("data_token")
+                    token: sessionStorage.getItem("data_token"),
+                    store_id:18,
                 }))
                 .then(res => {
                     this.apiColor = res.data.data.theme_color;
@@ -122,14 +123,14 @@ import qs from "qs"
                 }
                 .scroll_box{
                     width: 4.5rem;
-                    height: .59rem;
+                    height: .5rem;
                     position: absolute;
                     left:.7rem;
                     top:-.1rem;
                     transition: 1s all ease;
                     li{
                         font-size: .2rem;
-                        line-height: .59rem;
+                        line-height: .5rem;
                     }
                 }
             }
@@ -171,55 +172,59 @@ import qs from "qs"
             background:#fff;
         }
     }
-         .index_Ctrl{
-           overflow: hidden;
-           padding: .3rem .3rem;
-         .index_Ctrl_auto{
-            overflow: hidden;
-            display: flex;
-            justify-content: space-between;
-            flex-direction: row;
-            flex-wrap: wrap;
-         }
-         .index_Ctrl_auto .link{
-            display: block;
-            width:1.15rem;
-            height: 1.6rem;
-            float: left;
-            overflow: hidden;
-        }
-        .index_Ctrl_auto .link:nth-child(5n){
-            margin-right: 0;
-        }
-        .index_Ctrl_auto .link img{
-            width: 1.15rem;
-            height: 1.15rem;
-            display: block;
-            border-radius: 50%;
-           
-        }
-        .index_Ctrl_auto .link span{
+        .index_Ctrl{
             width: 100%;
-            height: 0.45rem;
-            display: block;
-            color: #333;
-            font-size: 0.26rem;
-            text-align: center;
-            line-height: 0.55rem;
-            font-weight: 500;
-        }  
-    }
+            overflow: hidden;
+            .index_Ctrl_auto{
+                width: 7.1rem;
+                overflow: hidden;
+                margin: 0 .2rem 0rem .2rem;
+                display: flex;
+                justify-content: flex-start;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .index_Ctrl_auto .link{
+                display: block;
+                width:1.15rem;
+                height: 1.6rem;
+                float: left;
+                margin-right: 0.33rem;
+                margin-top: 0.15rem;
+                overflow: hidden;
+            }
+            .index_Ctrl_auto .link:nth-child(5n){
+                margin-right: 0;
+            }
+            .index_Ctrl_auto .link img{
+                width: 1.15rem;
+                height: 1.15rem;
+                display: block;
+                border-radius: 50%;
+            
+            }
+            .index_Ctrl_auto .link span{
+                width: 100%;
+                height: 0.45rem;
+                display: block;
+                color: #333;
+                font-size: 0.24rem;
+                text-align: center;
+                line-height: 0.45rem;
+                font-weight: 500;
+            }  
+        }
     .index_flash{
         // width: 100%;
-        height: 0.6rem;
+        height: 0.5rem;
         background-color: #fff;
         overflow: hidden;
-        margin-top: 2rem;
-        margin-left: .3rem;
-        margin-right: .3rem;
+        margin-top: 1.95rem;
+        margin-left: .2rem;
+        margin-right: .2rem;
         border-radius: .5rem;
         .index_flash_logo{
-            width: 1rem;
+            width: .8rem;
             height: 0.6rem;
             float: left;
             background-color: #d02629;
@@ -248,11 +253,12 @@ import qs from "qs"
             font-size: 0.28rem;
             text-align: center;
             color: #fff;
+            line-height: .5rem;
         }
         .box-wrap{
             position: relative;
             width: 4.05rem;
-            height: 0.6rem;
+            height: 0.5rem;
             float: left;
             margin-left: 0.2rem;
             overflow: hidden;
@@ -265,8 +271,8 @@ import qs from "qs"
         }
         .scroll_box li{
             width: 4.05rem;
-            height: 0.55rem;
-            line-height: 0.55rem;
+            height: 0.53rem;
+            line-height: 0.53rem;
             font-size: 0.28rem;
             color: #333;
             overflow: hidden;
@@ -276,12 +282,12 @@ import qs from "qs"
             cursor: pointer;
         }
         .More{
-            width: 1rem;
-            height: 0.6rem;
+            width: .8rem;
+            height: 0.5rem;
             display: block;
             float: right;
             text-align: center;
-            line-height: 0.6rem;
+            line-height: 0.5rem;
             color:#fff;
             font-size: 0.28rem;
             background-color: #9b9595;

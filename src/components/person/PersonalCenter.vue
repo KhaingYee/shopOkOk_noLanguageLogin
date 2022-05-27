@@ -336,7 +336,8 @@
             StyColor() {
             this.axios
                 .post(this.$httpConfig.StyColor, qs.stringify({
-                    token: sessionStorage.getItem("data_token")
+                    token: sessionStorage.getItem("data_token"),
+                    store_id:18,
                 }))
                 .then(res => {
                     this.ApiColor = res.data.data.theme_color;

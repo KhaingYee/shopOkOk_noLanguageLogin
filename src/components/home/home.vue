@@ -315,7 +315,8 @@ export default {
     },
     styColor() {
         this.axios.post(this.$httpConfig.StyColor, QS.stringify({
-          token: sessionStorage.getItem("data_token")
+          token: sessionStorage.getItem("data_token"),
+          store_id:18,
         }))
         .then(res => {
             this.apicolor = res.data.data.theme_color;
@@ -644,7 +645,7 @@ export default {
             .new_header{
               display: flex;
               justify-content: space-between;
-              padding: .2rem .3rem;
+              padding: .2rem;
             }
         .header_logo{ 
             width: 2rem;
@@ -822,10 +823,10 @@ export default {
   }
   .offline-node{
     background: linear-gradient(to bottom, #fbf4f1, #fcdce0);
-    padding: .2rem 0 .2rem .2rem;
+    padding: .1rem 0 .1rem .1rem;
 		.title{
 			display: flex;
-      padding-bottom: .2rem;
+      padding-bottom: .1rem;
       .title-left{
         border-radius: .1rem;
         border-left: .1rem solid #d02629;
@@ -857,16 +858,16 @@ export default {
 			overflow-x: auto;
 			flex-wrap: nowrap;
 			.cardd{
-				width:1.5rem;
+        width: 1.505rem;
+        height: 2.21rem;
 				flex: 0 0 auto;
-				height:2.5rem;
 				background:white;
-				margin-right:.2rem;
+				margin-right:.1rem;
 				overflow: hidden;
-        border-radius: .2rem;
+        border-radius: .1rem;
 				.card-image{
-					width:1.5rem;
-					height:2.5rem;
+          width: 1.505rem;
+          height: 2.21rem;
 					opacity:1 !important;
 					.img{
 						width:100%;
@@ -878,19 +879,18 @@ export default {
 		}
 	}
   .img-div{
-    margin: .2rem .2rem 0 .2rem;
-    height: .84rem;
+    padding: .05rem;
+    background-color: #fff;
+    // height: .8rem;
     .banner-img{
       width: 100%;
-      height: 100%;
-      border-radius: .2rem;
     }
   }
   .Redeem{
-    padding: .2rem 0 0 .2rem;
+    padding: .1rem 0 0 .1rem;
 		.title{
 			display: flex;
-      padding-bottom: .2rem;
+      padding-bottom: .1rem;
       .title-left{
         border-radius: .1rem;
         border-left: .1rem solid #d02629;
@@ -912,7 +912,7 @@ export default {
       .more{
         font-size: .3rem;
         color: #999;
-        right: .2rem;
+        right: .1rem;
         position: absolute;
         line-height: .43rem;
         height: .5rem;
@@ -927,16 +927,16 @@ export default {
 			overflow-x: auto;
 			flex-wrap: nowrap;
 			.cardd{
-				width:1.5rem;
+        width: 1.505rem;
+        height: 2.21rem;
 				flex: 0 0 auto;
-				height:2.5rem;
 				background:white;
-				margin-right:.2rem;
+				margin-right:.1rem;
 				overflow: hidden;
-        border-radius: .2rem;
+        border-radius: .1rem;
 				.card-image{
-					width:1.5rem;
-					height:2.5rem;
+          width: 1.505rem;
+          height: 2.21rem;
 					opacity:1 !important;
 					.img{
 						width:100%;
@@ -948,10 +948,10 @@ export default {
 		}
 	}
   .Recommended_store{
-    padding: .2rem 0 0 .2rem;
+    padding: .1rem 0 0 .1rem;
 		.title{
 			display: flex;
-      padding-bottom: .2rem;
+      padding-bottom: .1rem;
       .title-left{
         border-radius: .1rem;
         border-left: .1rem solid #d02629;
@@ -988,16 +988,16 @@ export default {
 			overflow-x: auto;
 			flex-wrap: nowrap;
 			.cardd{
-				width:1.5rem;
+        width: 1.505rem;
+        height: 2.21rem;
 				flex: 0 0 auto;
-				height:2.5rem;
 				background:white;
-				margin-right:.2rem;
+				margin-right:.1rem;
 				overflow: hidden;
-				border-radius: .2rem;
+				border-radius: .1rem;
 				.card-image{
-					width:1.5rem;
-					height:2.5rem;
+          width: 1.505rem;
+          height: 2.21rem;
 					opacity:1 !important;
 					.img{
 						width:100%;
@@ -1010,10 +1010,10 @@ export default {
 		}
 	}
   .New-arrivals{
-    padding: .2rem 0 0 .2rem;
+    padding: .1rem 0 0 .1rem;
 		.title{
 			display: flex;
-      padding-bottom: .2rem;
+      padding-bottom: .1rem;
       .title-left{
         border-radius: .1rem;
         border-left: .1rem solid #d02629;
@@ -1035,7 +1035,7 @@ export default {
       .more{
         font-size: .3rem;
         color: #999;
-        right: .2rem;
+        right: .1rem;
         position: absolute;
         line-height: .43rem;
         height: .5rem;
@@ -1047,15 +1047,15 @@ export default {
 			overflow-x: auto;
 			flex-wrap: nowrap;
 			.card{
-				width:3rem;
+				width:2.65rem;
 				flex: 0 0 auto;
 				background:white;
-				margin-right:.2rem;
+				margin-right:.1rem;
 				overflow: hidden;
-				border-radius: .2rem;
+				border-radius: .1rem;
 				.card-image{
-					width:3rem;
-					height:3rem;
+					width:2.65rem;
+					height:2.65rem;
 					opacity:1 !important;
 					img{
 						width:100%;
@@ -1080,9 +1080,10 @@ export default {
           font-size: .28rem;
           margin-top: .1rem;
             .shop-grade{
-              width: 0.7rem;
-              height: 0.42rem;
+              width: 0.5rem;
+              height: 0.3rem;
               border-radius: .1rem;
+              margin-top: .06rem;
             }
         }
         .showdiv{
@@ -1769,9 +1770,10 @@ export default {
                 // border-radius: .05rem;
                 // padding: .05rem .1rem;
                 // text-align: center;
-                width: 0.7rem;
-                height: 0.42rem;
-                border-radius: .1rem;
+                  width: 0.5rem;
+                  height: 0.3rem;
+                  border-radius: .1rem;
+                  margin-top: .06rem;
               }
           }
           .showdiv{
@@ -1833,14 +1835,14 @@ export default {
 <style lang="less" scoped>
 .home {
   .mint-swipe {
-      width: 92%;
+      width: 94.6%;
       text-align: center;
       position: absolute;
       top: 1rem;
       border-radius: 0.2rem;
       height: 3.28rem;
       z-index: 10;
-      margin: 0 .3rem;
+      margin: 0 .2rem;
     img {
       width: 100%;
       height: 100%;
