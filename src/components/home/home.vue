@@ -861,15 +861,15 @@ export default {
 			overflow-x: auto;
 			flex-wrap: nowrap;
 			.cardd{
-        width: 1.6rem;
+        width: 1.5rem;
         height: 2.3rem;
 				flex: 0 0 auto;
 				background:white;
 				margin-right:.1rem;
 				overflow: hidden;
-        border-radius: .2rem;
+        border-radius: .1rem;
 				.card-image{
-        width: 1.6rem;
+        width: 1.5rem;
         height: 2.3rem;
 					opacity:1 !important;
 					.img{
@@ -930,15 +930,15 @@ export default {
 			overflow-x: auto;
 			flex-wrap: nowrap;
 			.cardd{
-        width: 1.6rem;
+        width: 1.5rem;
         height: 2.3rem;
 				flex: 0 0 auto;
 				background:white;
 				margin-right:.1rem;
 				overflow: hidden;
-        border-radius: .2rem;
+        border-radius: .1rem;
 				.card-image{
-        width: 1.6rem;
+        width: 1.5rem;
         height: 2.3rem;
 					opacity:1 !important;
 					.img{
@@ -983,15 +983,15 @@ export default {
 			overflow-x: auto;
 			flex-wrap: nowrap;
 			.cardd{
-        width: 1.6rem;
+        width: 1.5rem;
         height: 2.3rem;
 				flex: 0 0 auto;
 				background:white;
 				margin-right:.1rem;
 				overflow: hidden;
-				border-radius: .2rem;
+				border-radius: .1rem;
 				.card-image{
-        width: 1.6rem;
+        width: 1.5rem;
         height: 2.3rem;
 					opacity:1 !important;
 					.img{
