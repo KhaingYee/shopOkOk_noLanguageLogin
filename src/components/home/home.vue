@@ -125,6 +125,9 @@
           <div class="five-title" @click="homeActive(index)" v-for="(item,index) in className" :key="index">
             <div class="title" :class="{active: titleActive == index}">{{item.title}}</div>
             <div class="sectitle" :class="{secactive: titleActive == index}">{{item.name}} <img src="../../assets/conner.jpg" class="img-conner" v-if="titleActive == index"/></div>
+            <!-- <div class="sectitle" :class="{secactive: titleActive == index}">{{item.name}} 
+              <div class="img-conner" v-if="titleActive == index"></div>
+              </div> -->
           </div>
         </div>
         <div class="goods-box" v-if="floorList.length>0">
@@ -822,7 +825,7 @@ export default {
     }
   }
   .offline-node{
-    background: linear-gradient(to bottom, #fbf4f1, #fcdce0);
+    background: linear-gradient(to bottom, #fff4f4, #fcdce4);
     padding: .1rem 0 .1rem .1rem;
 		.title{
 			display: flex;
@@ -835,15 +838,15 @@ export default {
         font-size: .3rem;
         color: #d02629;
         padding-left: .1rem;
-        line-height: .43rem;
-        height: .5rem;
+        // line-height: .43rem;
+        // height: .5rem;
       }	
       .name-dis{
         font-size: .24rem;
         color: #d02629;
         padding-left: .2rem;
-        line-height: .5rem;
-        height: .5rem;
+        line-height: .43rem;
+        // height: .5rem;
       }	
       .more{
         font-size: .24rem;
@@ -864,7 +867,7 @@ export default {
 				background:white;
 				margin-right:.1rem;
 				overflow: hidden;
-        border-radius: .1rem;
+        border-radius: .2rem;
 				.card-image{
         width: 1.6rem;
         height: 2.3rem;
@@ -899,23 +902,23 @@ export default {
         font-size: .3rem;
         color: #333;
         padding-left: .1rem;
-        line-height: .43rem;
-        height: .5rem;
+        // line-height: .43rem;
+        // height: .5rem;
       }	
       .name-dis{
         font-size: .24rem;
         color: #d02629;
         padding-left: .2rem;
-        line-height: .5rem;
-        height: .5rem;
+        line-height: .43rem;
+        // height: .5rem;
       }	
       .more{
         font-size: .3rem;
         color: #999;
         right: .1rem;
         position: absolute;
-        line-height: .43rem;
-        height: .5rem;
+        // line-height: .43rem;
+        // height: .5rem;
       }		
 		}
     .offline-card{
@@ -933,7 +936,7 @@ export default {
 				background:white;
 				margin-right:.1rem;
 				overflow: hidden;
-        border-radius: .1rem;
+        border-radius: .2rem;
 				.card-image{
         width: 1.6rem;
         height: 2.3rem;
@@ -960,23 +963,15 @@ export default {
         font-size: .3rem;
         color: #333;
         padding-left: .1rem;
-        line-height: .43rem;
-        height: .5rem;
+        // line-height: .43rem;
+        // height: .5rem;
       }	
       .name-dis{
         font-size: .24rem;
         color: #d02629;
         padding-left: .2rem;
-        line-height: .5rem;
-        height: .5rem;
-      }	
-      .more{
-        font-size: .3rem;
-        color: #999;
-        right: .2rem;
-        position: absolute;
         line-height: .43rem;
-        height: .5rem;
+        // height: .5rem;
       }		
 		}
     .offline-card{
@@ -994,7 +989,7 @@ export default {
 				background:white;
 				margin-right:.1rem;
 				overflow: hidden;
-				border-radius: .1rem;
+				border-radius: .2rem;
 				.card-image{
         width: 1.6rem;
         height: 2.3rem;
@@ -1022,24 +1017,16 @@ export default {
         font-size: .3rem;
         color: #333;
         padding-left: .1rem;
-        line-height: .43rem;
-        height: .5rem;
+        // line-height: .43rem;
+        // height: .5rem;
       }	
       .name-dis{
         font-size: .24rem;
         color: #d02629;
         padding-left: .2rem;
-        line-height: .5rem;
-        height: .5rem;
-      }	
-      .more{
-        font-size: .3rem;
-        color: #999;
-        right: .1rem;
-        position: absolute;
         line-height: .43rem;
-        height: .5rem;
-      }		
+        // height: .5rem;
+      }	
 		}
 		.cards{
 			display: flex;
@@ -1052,7 +1039,7 @@ export default {
 				background:white;
 				margin-right:.1rem;
 				overflow: hidden;
-				border-radius: .1rem;
+				border-radius: .2rem;
 				.card-image{
 					width:2.65rem;
 					height:2.65rem;
@@ -1083,7 +1070,7 @@ export default {
               width: 0.5rem;
               height: 0.3rem;
               border-radius: .1rem;
-              margin-top: .06rem;
+              margin-top: .05rem;
             }
         }
         .showdiv{
@@ -1673,6 +1660,10 @@ export default {
            width: .2rem;
             height: .2rem;
             margin: .25rem 0 0 -.17rem;
+
+          // height: .15rem;
+          // border-bottom-right-radius: .5rem;
+          // border-right: .06rem solid #d02629;
           }
         }
         .active{
@@ -1773,7 +1764,7 @@ export default {
                   width: 0.5rem;
                   height: 0.3rem;
                   border-radius: .1rem;
-                  margin-top: .06rem;
+                  margin-top: .05rem;
               }
           }
           .showdiv{

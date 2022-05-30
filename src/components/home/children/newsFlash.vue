@@ -190,7 +190,7 @@ import qs from "qs"
                 height: 1.6rem;
                 float: left;
                 margin-right: 0.33rem;
-                margin-top: 0.15rem;
+                margin-top: 0.11rem;
                 overflow: hidden;
             }
             .index_Ctrl_auto .link:nth-child(5n){
@@ -219,7 +219,7 @@ import qs from "qs"
         height: 0.5rem;
         background-color: #fff;
         overflow: hidden;
-        margin-top: 1.95rem;
+        margin-top: 1.91rem;
         margin-left: .2rem;
         margin-right: .2rem;
         border-radius: .5rem;
