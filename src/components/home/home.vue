@@ -826,7 +826,7 @@ export default {
   }
   .offline-node{
     background: linear-gradient(to bottom, #fff4f4, #fcdce4);
-    padding: .1rem .1rem .1rem .1rem;
+    padding: .1rem 0 .1rem .2rem;
     //padding-left: .1rem;
 		.title{
 			display: flex;
@@ -836,21 +836,21 @@ export default {
         width: .1rem;
         height: .35rem;
         background: rgb(191, 30, 46);
-        border-radius: 5px;
+        border-radius: .1rem;
         margin-top: 0.02rem;
       }
 			.name{
         font-size: .3rem;
-        color: #333;
+        color: #d02629;
         padding-left: .1rem;
         font-weight: 400;
       }	
       .name-dis{
         font-size: .24rem;
         color: #d02629;
-        padding-left: .2rem;
+        padding-left: 10px;
         line-height: .43rem;
-        padding-top: 0.02rem;
+        padding-top: 0.03rem;
         // height: .5rem;
       }	
       .more{
@@ -870,7 +870,7 @@ export default {
         height: 2.49rem;
 				flex: 0 0 auto;
 				background:white;
-				margin-right:.1rem;
+				margin-right:5px;
 				overflow: hidden;
         border-radius: .1rem;
 				.card-image{
@@ -887,7 +887,7 @@ export default {
 		}
 	}
   .img-div{
-    padding: .05rem;
+    padding: .05rem .1rem .05rem .15rem;
     background-color: #fff;
     // height: .8rem;
     .banner-img{
@@ -895,7 +895,7 @@ export default {
     }
   }
   .Redeem{
-    padding:0 .1rem 0 .1rem;
+    padding:0 0 0 .2rem;
 		.title{
 			display: flex;
       padding-bottom: .06rem;
@@ -904,7 +904,7 @@ export default {
         width: .1rem;
         height: .35rem;
         background: rgb(191, 30, 46);
-        border-radius: 5px;
+        border-radius: .1rem;
         margin-top: 0.05rem;
       }
 			.name{
@@ -917,15 +917,15 @@ export default {
       .name-dis{
         font-size: .24rem;
         color: #d02629;
-        padding-left: .2rem;
+        padding-left: 10px;
         line-height: .43rem;
-        padding-top: 0.02rem;
+        padding-top: 0.03rem;
         // height: .5rem;
       }	
       .more{
         font-size: .3rem;
         color: #999;
-        right: .1rem;
+        right: .2rem;
         position: absolute;
         // line-height: .43rem;
         // height: .5rem;
@@ -944,7 +944,7 @@ export default {
         height: 2.49rem;
 				flex: 0 0 auto;
 				background:white;
-				margin-right:.1rem;
+				margin-right:5px;
 				overflow: hidden;
         border-radius: .1rem;
 				.card-image{
@@ -961,7 +961,7 @@ export default {
 		}
 	}
   .Recommended_store{
-    padding:0 .1rem 0 .1rem;
+    padding:0 0 0 .2rem;
 		.title{
 			display: flex;
       padding-bottom: .06rem;
@@ -970,7 +970,7 @@ export default {
         width: .1rem;
         height: .35rem;
         background: rgb(191, 30, 46);
-        border-radius: 5px;
+        border-radius: .1rem;
         margin-top: 0.05rem;
       }
 			.name{
@@ -983,9 +983,9 @@ export default {
       .name-dis{
         font-size: .24rem;
         color: #d02629;
-        padding-left: .2rem;
+        padding-left: 10px;
         line-height: .43rem;
-        padding-top: 0.02rem;
+        padding-top: 0.03rem;
         // height: .5rem;
       }		
 		}
@@ -1002,7 +1002,7 @@ export default {
         height: 2.49rem;
 				flex: 0 0 auto;
 				background:white;
-				margin-right:.1rem;
+				margin-right:5px;
 				overflow: hidden;
 				border-radius: .1rem;
 				.card-image{
@@ -1020,7 +1020,7 @@ export default {
 		}
 	}
   .New-arrivals{
-    padding:0 .1rem 0 .1rem;
+    padding:0 0 0 .2rem;
 		.title{
 			display: flex;
       padding-bottom: .06rem;
@@ -1029,7 +1029,7 @@ export default {
         width: .1rem;
         height: .35rem;
         background: rgb(191, 30, 46);
-        border-radius: 5px;
+        border-radius: .1rem;
         margin-top: 0.05rem;
       }
 			.name{
@@ -1042,9 +1042,9 @@ export default {
       .name-dis{
         font-size: .24rem;
         color: #d02629;
-        padding-left: .2rem;
+        padding-left: 10px;
         line-height: .43rem;
-        padding-top: 0.02rem;
+        padding-top: 0.03rem;
         // height: .5rem;
       }	
 		}
