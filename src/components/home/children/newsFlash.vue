@@ -12,7 +12,7 @@
                     <li  v-for="item in data" :key="item.id" @click="hit(item.id)">{{item.title}}</li>
                 </ul>
             </div>
-            <router-link to="Notice" class="More">更多</router-link>
+            <router-link to="Notice" class="More"><span class="text-sample_img">更多</span></router-link>
         </div>
            <!-- 快捷链接 -->
         <div class="index_Ctrl">
@@ -41,11 +41,22 @@ import qs from "qs"
         },
         created() {
             this.styColor();
+            // setInterval (this.showMarquee, 2000)
         },
         mounted(){
             this.scroll_box();
         },
         methods: {
+            showMarquee(){
+              this.animate =true;
+              setTimeout (() => {
+                this.data.push (
+                    this.data[0]
+                );
+                this.data.shift();
+                this.animate =false;
+              }, 500);
+            },
             styColor() {
                 this.axios
                 .post(this.$httpConfig.StyColor, qs.stringify({
@@ -66,14 +77,14 @@ import qs from "qs"
                 var count = 0,
                     clear = null;
                 clear = setInterval(() => {
-                    count ++;
-                    
-                    if(this.$store.state.home_data.announcement && count >= this.$store.state.home_data.announcement.length){
-                        count = 0;
-                    }
-                    if(this.$refs.scroll_box){
-                        this.$refs.scroll_box.style.top = -count * 0.55 +'rem';
-                    }
+                  this.animate =true;
+                  setTimeout (() => {
+                    this.data.push (
+                        this.data[0]
+                    );
+                    this.data.shift();
+                    this.animate =false;
+                  }, 2000);
                 },2000);
             }, 
             hit(id){
@@ -224,7 +235,7 @@ import qs from "qs"
         margin-right: .2rem;
         border-radius: .5rem;
         .index_flash_logo{
-            width: .8rem;
+            width: 0.8rem;
             height: 0.6rem;
             float: left;
             background-color: #d02629;
@@ -254,7 +265,7 @@ import qs from "qs"
             text-align: center;
             color: #fff;
             line-height: .5rem;
-        }
+            margin-left: 0.05rem;        }
         .box-wrap{
             position: relative;
             width: 4.05rem;
@@ -278,11 +289,11 @@ import qs from "qs"
             overflow: hidden;
             text-overflow:ellipsis;
             white-space: nowrap;
-            display: block;
+            display:block;
             cursor: pointer;
         }
         .More{
-            width: .8rem;
+            width: 0.8rem;
             height: 0.5rem;
             display: block;
             float: right;
@@ -291,6 +302,13 @@ import qs from "qs"
             color:#fff;
             font-size: 0.28rem;
             background-color: #9b9595;
+            .text-sample_img{
+              font-size: 0.28rem;
+              text-align: center;
+              color: #fff;
+              line-height: .5rem;
+              margin-right:0.05rem;
+            }
         }
     }
 </style>

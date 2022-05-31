@@ -826,26 +826,31 @@ export default {
   }
   .offline-node{
     background: linear-gradient(to bottom, #fff4f4, #fcdce4);
-    padding: .1rem 0 .1rem .1rem;
+    padding: .1rem .1rem .1rem .1rem;
+    //padding-left: .1rem;
 		.title{
 			display: flex;
-      padding-bottom: .1rem;
+      padding-bottom: .06rem;
+      padding-top: .06rem;
       .title-left{
-        border-radius: .1rem;
-        border-left: .1rem solid #d02629;
+        width: .1rem;
+        height: .35rem;
+        background: rgb(191, 30, 46);
+        border-radius: 5px;
+        margin-top: 0.02rem;
       }
 			.name{
         font-size: .3rem;
-        color: #d02629;
+        color: #333;
         padding-left: .1rem;
-        // line-height: .43rem;
-        // height: .5rem;
+        font-weight: 400;
       }	
       .name-dis{
         font-size: .24rem;
         color: #d02629;
         padding-left: .2rem;
         line-height: .43rem;
+        padding-top: 0.02rem;
         // height: .5rem;
       }	
       .more{
@@ -862,15 +867,15 @@ export default {
 			flex-wrap: nowrap;
 			.cardd{
         width: 1.5rem;
-        height: 2.3rem;
+        height: 2.49rem;
 				flex: 0 0 auto;
 				background:white;
 				margin-right:.1rem;
 				overflow: hidden;
         border-radius: .1rem;
 				.card-image{
-        width: 1.5rem;
-        height: 2.3rem;
+          width: 1.5rem;
+          height: 2.49rem;
 					opacity:1 !important;
 					.img{
 						width:100%;
@@ -890,13 +895,17 @@ export default {
     }
   }
   .Redeem{
-    padding: .1rem 0 0 .1rem;
+    padding:0 .1rem 0 .1rem;
 		.title{
 			display: flex;
-      padding-bottom: .1rem;
+      padding-bottom: .06rem;
+      padding-top: .06rem;
       .title-left{
-        border-radius: .1rem;
-        border-left: .1rem solid #d02629;
+        width: .1rem;
+        height: .35rem;
+        background: rgb(191, 30, 46);
+        border-radius: 5px;
+        margin-top: 0.05rem;
       }
 			.name{
         font-size: .3rem;
@@ -910,6 +919,7 @@ export default {
         color: #d02629;
         padding-left: .2rem;
         line-height: .43rem;
+        padding-top: 0.02rem;
         // height: .5rem;
       }	
       .more{
@@ -931,15 +941,15 @@ export default {
 			flex-wrap: nowrap;
 			.cardd{
         width: 1.5rem;
-        height: 2.3rem;
+        height: 2.49rem;
 				flex: 0 0 auto;
 				background:white;
 				margin-right:.1rem;
 				overflow: hidden;
         border-radius: .1rem;
 				.card-image{
-        width: 1.5rem;
-        height: 2.3rem;
+          width: 1.5rem;
+          height: 2.49rem;
 					opacity:1 !important;
 					.img{
 						width:100%;
@@ -951,13 +961,17 @@ export default {
 		}
 	}
   .Recommended_store{
-    padding: .1rem 0 0 .1rem;
+    padding:0 .1rem 0 .1rem;
 		.title{
 			display: flex;
-      padding-bottom: .1rem;
+      padding-bottom: .06rem;
+      padding-top: .06rem;
       .title-left{
-        border-radius: .1rem;
-        border-left: .1rem solid #d02629;
+        width: .1rem;
+        height: .35rem;
+        background: rgb(191, 30, 46);
+        border-radius: 5px;
+        margin-top: 0.05rem;
       }
 			.name{
         font-size: .3rem;
@@ -971,6 +985,7 @@ export default {
         color: #d02629;
         padding-left: .2rem;
         line-height: .43rem;
+        padding-top: 0.02rem;
         // height: .5rem;
       }		
 		}
@@ -984,15 +999,15 @@ export default {
 			flex-wrap: nowrap;
 			.cardd{
         width: 1.5rem;
-        height: 2.3rem;
+        height: 2.49rem;
 				flex: 0 0 auto;
 				background:white;
 				margin-right:.1rem;
 				overflow: hidden;
 				border-radius: .1rem;
 				.card-image{
-        width: 1.5rem;
-        height: 2.3rem;
+          width: 1.5rem;
+          height: 2.49rem;
 					opacity:1 !important;
 					.img{
 						width:100%;
@@ -1005,13 +1020,17 @@ export default {
 		}
 	}
   .New-arrivals{
-    padding: .1rem 0 0 .1rem;
+    padding:0 .1rem 0 .1rem;
 		.title{
 			display: flex;
-      padding-bottom: .1rem;
+      padding-bottom: .06rem;
+      padding-top: .06rem;
       .title-left{
-        border-radius: .1rem;
-        border-left: .1rem solid #d02629;
+        width: .1rem;
+        height: .35rem;
+        background: rgb(191, 30, 46);
+        border-radius: 5px;
+        margin-top: 0.05rem;
       }
 			.name{
         font-size: .3rem;
@@ -1025,6 +1044,7 @@ export default {
         color: #d02629;
         padding-left: .2rem;
         line-height: .43rem;
+        padding-top: 0.02rem;
         // height: .5rem;
       }	
 		}
