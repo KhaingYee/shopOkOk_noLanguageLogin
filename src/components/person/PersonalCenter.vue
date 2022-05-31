@@ -241,10 +241,10 @@
                     //     text: "我的钱包",
                     //     imgData: require("@/assets/images/wallet.png")
                     // },
-                    {
-                        text: "我要开店",
-                        imgData: require("@/assets/images/shop.png")
-                    },
+                    // {
+                    //     text: "我要开店",
+                    //     imgData: require("@/assets/images/shop.png")
+                    // },
                     {
                         text: "收货地址",
                         imgData: require("@/assets/images/myAdvice.png")
@@ -553,10 +553,10 @@
                         // case 1:
                         //     this.$router.push("/comingSoon");
                         //     break;
+                        // case 1:
+                        //     this.$router.push("/shopOpen");
+                        //     break;
                         case 1:
-                            this.$router.push("/shopOpen");
-                            break;
-                        case 2:
                             this.$router.push({
                                 name: "address",
                                 params: {
@@ -567,7 +567,7 @@
                         // case 3:
                         //     this.$router.push("/Feedback");
                         //     break;
-                        case 3:
+                        case 2:
                             this.$router.push("/intOrder");
                             break;
                         case 4:
@@ -1353,8 +1353,8 @@ margin: 0;
             flex-direction: row;
 
             li {
-                flex: 1;
-                width: 20%;
+                // flex: 1;
+                width: 25%;
                 height: 1.26rem;
                 text-align: center;
                 padding-top: 0.1rem;

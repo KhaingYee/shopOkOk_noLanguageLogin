@@ -99,7 +99,9 @@
                         token: sessionStorage.getItem("data_token")
                     }
                 }).then((res) => {
-                    this.stateHandling(res.data.status, res.data.data.goods);
+                    if(res.data.status == 1){
+                        this.stateHandling(res.data.status, res.data.data.goods);
+                    }
                     this.load_wrap = false;
                 }).catch((err) => {
                     console.log(err);
