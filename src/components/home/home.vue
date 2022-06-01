@@ -124,10 +124,9 @@
         <div class="top">
           <div class="five-title" @click="homeActive(index)" v-for="(item,index) in className" :key="index">
             <div class="title" :class="{active: titleActive == index}">{{item.title}}</div>
-            <div class="sectitle" :class="{secactive: titleActive == index}">{{item.name}} <img src="../../assets/conner.jpg" class="img-conner" v-if="titleActive == index"/></div>
-            <!-- <div class="sectitle" :class="{secactive: titleActive == index}">{{item.name}} 
+            <!-- <div class="sectitle" :class="{secactive: titleActive == index}">{{item.name}} <img src="../../assets/conner.jpg" class="img-conner" v-if="titleActive == index"/></div> -->
+              <div class="sectitle" :class="{secactive: titleActive == index}">{{item.name}}</div>
               <div class="img-conner" v-if="titleActive == index"></div>
-              </div> -->
           </div>
         </div>
         <div class="goods-box" v-if="floorList.length>0">
@@ -1676,15 +1675,17 @@ export default {
           text-align: center;
           font-size: 0.28rem;
           color: #999;
-          .img-conner{
-           width: .2rem;
-            height: .2rem;
-            margin: .25rem 0 0 -.17rem;
+          padding: 0 .1rem 0 0;
+        }
+        .img-conner{
+          //  width: .2rem;
+          //   height: .2rem;
+          //   margin: .25rem 0 0 -.17rem;
 
-          // height: .15rem;
-          // border-bottom-right-radius: .5rem;
-          // border-right: .06rem solid #d02629;
-          }
+          height: .15rem;
+          border-bottom-right-radius: .5rem;
+          border-right: .06rem solid #d02629;
+          margin: -.1rem 0 0 0;
         }
         .active{
           color:#000;
